@@ -1,7 +1,7 @@
 # ISW-Moonmen
 
-##Integrantes:
+## Integrantes:
 
-*Leonardo Angel Astudillo Villalón
-*Juan Pablo Jorquera Zapata
-*Eliecer Zambrano Reyes
+* Leonardo Angel Astudillo Villalón
+* Juan Pablo Jorquera Zapata
+* Eliecer Zambrano Reyes
