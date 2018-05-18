@@ -22,4 +22,4 @@ Ingresar `bundle install` en el terminal, para instalar dependencias.
 
 Utilizar en terminal `rails s` para iniciar la instancia del sistema.
 
-En URL de algún navegador, ingresar [localhost:3000]() para visualizar el proyecto.
+En URL de algún navegador, ingresar a [localhost:3000](localhost:3000) para visualizar el proyecto.
