@@ -10,7 +10,7 @@
 
 Hasta ahora, se creo un ambiente de producción (usando Heroku), para visualizar de manera online la version actual.
 
-Link: <gpi-moonmen.herokuapp.com>
+Link: https://gpi-moonmen.herokuapp.com
 
 ## Instrucciones de ejecución
 
@@ -22,4 +22,4 @@ Ingresar `bundle install` en el terminal, para instalar dependencias.
 
 Utilizar en terminal `rails s` para iniciar la instancia del sistema.
 
-En URL de algún navegador, ingresar a <localhost:3000> para visualizar el proyecto.
+En URL de algún navegador, ingresar a [localhost:3000](http://localhost:3000) para visualizar el proyecto.
