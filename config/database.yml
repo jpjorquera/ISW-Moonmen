@@ -1,6 +1,6 @@
 development:
   adapter: postgresql
-  host: /tmp
+  host: localhost
   encoding: utf8
   database: project_development
   pool: 5
@@ -9,7 +9,7 @@ development:
 
 test: &TEST
   adapter: postgresql
-  host: /tmp
+  host: localhost
   encoding: utf8
   database: project_test
   pool: 5
@@ -18,12 +18,12 @@ test: &TEST
 
 production:
   adapter: postgresql
-  host: /tmp
+  host: localhost
   encoding: utf8
   database: project_production
   pool: 5
   username: postgres
   password: admin
-  
+
 cucumber:
   <<: *TEST
