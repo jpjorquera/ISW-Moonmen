@@ -1,1 +1,4 @@
-# empty
+homero:
+  name: Homero Simpson
+  email: Homero@Simpson.com
+  password_digest: <%= User.digest('superusuario') %>
