@@ -10,11 +10,81 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_06_26_073106) do
+ActiveRecord::Schema.define(version: 2018_07_23_160136) do
 
   # These are extensions that must be enabled in order to support this database
-  enable_extension "adminpack"
   enable_extension "plpgsql"
+
+  create_table "abastecimiento_centrals", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "abastecimiento_obras", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "bodega_centrals", force: :cascade do |t|
+    t.string "localizacion"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "bodega_obras", force: :cascade do |t|
+    t.string "localizacion"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "bodeguero_centrals", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "bodeguero_obras", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "encargado_compras", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "inventario_centrals", force: :cascade do |t|
+    t.integer "stock_central"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "inventario_obras", force: :cascade do |t|
+    t.integer "stock_obra"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "materials", force: :cascade do |t|
+    t.string "nombre"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "orden_compras", force: :cascade do |t|
+    t.string "numero_orden"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "personal_obras", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "proveedors", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "name"
@@ -24,13 +94,6 @@ ActiveRecord::Schema.define(version: 2018_06_26_073106) do
     t.datetime "updated_at", null: false
     t.string "password_digest"
     t.index ["email"], name: "index_users_on_email", unique: true
-  end
-
-  create_table "usuario", primary_key: "usuario_id", force: :cascade do |t|
-    t.string "usuario_name", limit: 80
-    t.string "usuario_pass", limit: 80
-    t.integer "tipo"
-    t.string "correo", limit: 80
   end
 
 end
