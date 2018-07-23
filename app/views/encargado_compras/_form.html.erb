@@ -1,0 +1,17 @@
+<%= form_with(model: encargado_compra, local: true) do |form| %>
+  <% if encargado_compra.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(encargado_compra.errors.count, "error") %> prohibited this encargado_compra from being saved:</h2>
+
+      <ul>
+      <% encargado_compra.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

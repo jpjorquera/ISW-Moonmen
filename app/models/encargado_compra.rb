@@ -1,0 +1,2 @@
+class EncargadoCompra < ApplicationRecord
+end

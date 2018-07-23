@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Abastecimiento Obras</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @abastecimiento_obras.each do |abastecimiento_obra| %>
+      <tr>
+        <td><%= link_to 'Show', abastecimiento_obra %></td>
+        <td><%= link_to 'Edit', edit_abastecimiento_obra_path(abastecimiento_obra) %></td>
+        <td><%= link_to 'Destroy', abastecimiento_obra, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Abastecimiento Obra', new_abastecimiento_obra_path %>

@@ -1,0 +1,17 @@
+<%= form_with(model: inventario_obra, local: true) do |form| %>
+  <% if inventario_obra.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(inventario_obra.errors.count, "error") %> prohibited this inventario_obra from being saved:</h2>
+
+      <ul>
+      <% inventario_obra.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

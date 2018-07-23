@@ -1,0 +1,2 @@
+class BodegaObra < ApplicationRecord
+end

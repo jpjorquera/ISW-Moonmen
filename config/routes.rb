@@ -1,4 +1,17 @@
 Rails.application.routes.draw do
+  resources :materials
+  resources :inventario_centrals
+  resources :abastecimiento_obras
+  resources :abastecimiento_centrals
+  resources :bodega_centrals
+  resources :inventario_obras
+  resources :bodega_obras
+  resources :proveedors
+  resources :orden_compras
+  resources :encargado_compras
+  resources :bodeguero_centrals
+  resources :bodeguero_obras
+  resources :personal_obras
   root    'static_pages#home'
   get     '/help', to: 'static_pages#help'
   get     '/about', to: 'static_pages#about'

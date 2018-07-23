@@ -1,0 +1,2 @@
+class InventarioObra < ApplicationRecord
+end

@@ -1,0 +1,2 @@
+class PersonalObra < ApplicationRecord
+end

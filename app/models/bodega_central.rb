@@ -1,0 +1,2 @@
+class BodegaCentral < ApplicationRecord
+end

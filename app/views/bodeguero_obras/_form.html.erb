@@ -1,0 +1,17 @@
+<%= form_with(model: bodeguero_obra, local: true) do |form| %>
+  <% if bodeguero_obra.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(bodeguero_obra.errors.count, "error") %> prohibited this bodeguero_obra from being saved:</h2>
+
+      <ul>
+      <% bodeguero_obra.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

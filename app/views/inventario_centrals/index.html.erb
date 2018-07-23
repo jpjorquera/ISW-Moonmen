@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Inventario Centrals</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @inventario_centrals.each do |inventario_central| %>
+      <tr>
+        <td><%= link_to 'Show', inventario_central %></td>
+        <td><%= link_to 'Edit', edit_inventario_central_path(inventario_central) %></td>
+        <td><%= link_to 'Destroy', inventario_central, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Inventario Central', new_inventario_central_path %>

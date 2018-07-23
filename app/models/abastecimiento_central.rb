@@ -1,0 +1,2 @@
+class AbastecimientoCentral < ApplicationRecord
+end

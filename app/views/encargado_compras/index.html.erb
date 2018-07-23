@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Encargado Compras</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @encargado_compras.each do |encargado_compra| %>
+      <tr>
+        <td><%= link_to 'Show', encargado_compra %></td>
+        <td><%= link_to 'Edit', edit_encargado_compra_path(encargado_compra) %></td>
+        <td><%= link_to 'Destroy', encargado_compra, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Encargado Compra', new_encargado_compra_path %>

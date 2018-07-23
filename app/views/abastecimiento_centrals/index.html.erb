@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Abastecimiento Centrals</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @abastecimiento_centrals.each do |abastecimiento_central| %>
+      <tr>
+        <td><%= link_to 'Show', abastecimiento_central %></td>
+        <td><%= link_to 'Edit', edit_abastecimiento_central_path(abastecimiento_central) %></td>
+        <td><%= link_to 'Destroy', abastecimiento_central, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Abastecimiento Central', new_abastecimiento_central_path %>

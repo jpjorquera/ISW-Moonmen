@@ -1,0 +1,2 @@
+module EncargadoComprasHelper
+end

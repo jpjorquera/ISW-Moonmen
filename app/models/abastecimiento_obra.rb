@@ -1,0 +1,2 @@
+class AbastecimientoObra < ApplicationRecord
+end

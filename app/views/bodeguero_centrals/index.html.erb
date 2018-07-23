@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Bodeguero Centrals</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @bodeguero_centrals.each do |bodeguero_central| %>
+      <tr>
+        <td><%= link_to 'Show', bodeguero_central %></td>
+        <td><%= link_to 'Edit', edit_bodeguero_central_path(bodeguero_central) %></td>
+        <td><%= link_to 'Destroy', bodeguero_central, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Bodeguero Central', new_bodeguero_central_path %>
