@@ -1,6 +1,7 @@
 class User < ApplicationRecord
   has_many :pesonal_obras
   has_many :bodeguero_obras
+  has_many :encargado_compras
   #has_many :bodeguero_centrals
   before_save { self.email = email.downcase }
   validates :name,    presence: true, length: { maximum: 50 }
