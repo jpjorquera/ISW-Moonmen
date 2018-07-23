@@ -3,4 +3,5 @@ class BodegueroCentral < ApplicationRecord
   belongs_to :user
   belongs_to :encargado_compras
   belongs_to :bodega_central
+  has_many :proveedors
 end

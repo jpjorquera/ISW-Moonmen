@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_07_23_193252) do
+ActiveRecord::Schema.define(version: 2018_07_23_193740) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -102,6 +102,10 @@ ActiveRecord::Schema.define(version: 2018_07_23_193252) do
   create_table "proveedors", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "bodeguero_central_id"
+    t.bigint "encargado_compra_id"
+    t.index ["bodeguero_central_id"], name: "index_proveedors_on_bodeguero_central_id"
+    t.index ["encargado_compra_id"], name: "index_proveedors_on_encargado_compra_id"
   end
 
   create_table "users", force: :cascade do |t|
