@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get '/inventario', to: 'inventario#ver'
   resources :materials
   resources :inventario_centrals
   resources :abastecimiento_obras
