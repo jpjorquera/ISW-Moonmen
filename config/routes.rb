@@ -1,4 +1,12 @@
 Rails.application.routes.draw do
+  get 'users_aux/personal_obra_aux'
+  get 'users_aux/bodeguero_obra_aux'
+  get 'users_aux/bodeguero_central_aux'
+  get 'users_aux/boencargado_compra_aux'
+  post '/po_aux', to: 'users_aux#po_create'
+  post '/bo_aux', to: 'users_aux#bo_create'
+  post '/bc_aux', to: 'users_aux#bc_create'
+  post '/ec_aux', to: 'users_aux#ec_create'
   get '/inventario', to: 'inventario#ver'
   resources :materials
   resources :inventario_centrals

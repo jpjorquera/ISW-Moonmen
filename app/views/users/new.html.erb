@@ -6,6 +6,14 @@
     <%= form_for(@user, url: signup_path) do |f| %>
     <%= render 'shared/error_messages' %>
 
+      <%= f.label :puesto %>
+      <%= f.select(:puesto, [
+       ['Administrador de Pagina', 0],
+       ['Bodeguero de Obra', 1],
+       ['Bodeguero Central', 2],
+       ['Encargado de Compra', 3],
+       ['Personal de Obra', 4]
+       ]) %>
       <%= f.label :nombre %>
       <%= f.text_field :name, class: 'form-control' %>
 
@@ -15,17 +23,9 @@
       <%= f.label :Contraseña %>
       <%= f.password_field :password, class: 'form-control' %>
 
-      <%= f.label :puesto %>
-      <%= f.select(:puesto, [
-         ['Administrador de Pagina', 0],
-         ['Bodeguero de Obra', 1],
-         ['Bodeguero Central', 2],
-         ['Encargado de Compra', 3],
-         ['Tecnico', 4]
-         ]) %>
-
       <%= f.submit "Crear Cuenta", class: "btn btn-primary" %>
 
     <% end %>
+
   </div>
 </div>
