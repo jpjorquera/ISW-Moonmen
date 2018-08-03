@@ -1,5 +1,5 @@
 class InventarioController < ApplicationController
   def ver
-    @material_bodega = Material.joins(:inventario_centrals)
+    @material_bodega = InventarioCentral.joins(:material)
   end
 end
