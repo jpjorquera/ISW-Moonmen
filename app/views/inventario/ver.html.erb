@@ -1,0 +1,42 @@
+<h1>Inventario de bodega <%= @localizacion %></h1>
+<br>
+
+<div class="table-responsive">
+<div class="row">
+<div class="col-xs-3">
+</div>
+<div class="col-md-6">
+<table class="table table-hover table-stripped table-condensed">
+  <thead class="thead-dark">
+    <tr>
+      <th>Material</th>
+      <th>Cantidad</th>
+    </tr>
+  </thead>
+  <% if @central %>
+  <tbody>
+    <% @material_bodega.each do |mat| %>
+      <tr>
+        <td><%= mat.material.nombre %></td>
+        <td><%= mat.stock_central %></td>
+        
+      </tr>
+    <% end %>
+  </tbody>
+  <% else %>
+  <tbody>
+    <% @material_bodega.each do |mat| %>
+      <tr>
+        <td><%= mat.material.nombre %></td>
+        <td><%= mat.stock_obra %></td>
+        
+      </tr>
+    <% end %>
+  </tbody>
+  <% end %>
+</table>
+</div>
+<div class="col-xs-3">
+</div>
+</div>
+</div>
