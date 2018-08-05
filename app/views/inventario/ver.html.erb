@@ -13,6 +13,7 @@
       <th>Cantidad</th>
     </tr>
   </thead>
+  <% if @central %>
   <tbody>
     <% @material_bodega.each do |mat| %>
       <tr>
@@ -22,6 +23,17 @@
       </tr>
     <% end %>
   </tbody>
+  <% else %>
+  <tbody>
+    <% @material_bodega.each do |mat| %>
+      <tr>
+        <td><%= mat.material.nombre %></td>
+        <td><%= mat.stock_obra %></td>
+        
+      </tr>
+    <% end %>
+  </tbody>
+  <% end %>
 </table>
 </div>
 <div class="col-xs-3">
