@@ -15,6 +15,8 @@ class UsersController < ApplicationController
     if @user.save
       log_in @user
       flash[:success] = "La cuenta fue creada exitosamente !!!"
+      bodeguero = BodegueroCentral.new(user_id: current_user.id, bodega_central_id: 1, encargado_compra_id: 1)
+      bodeguero.save!
       redirect_to signup_path
     else
       render 'new'
