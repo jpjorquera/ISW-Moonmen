@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  get '/materiales', to: 'materiales#index'
+  get 'materiales/agregar'
+  get 'materiales/peticion'
   get '/inventario', to: 'inventario#ver'
   resources :materials
   resources :inventario_centrals
