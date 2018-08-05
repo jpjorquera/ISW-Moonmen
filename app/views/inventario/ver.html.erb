@@ -1,4 +1,5 @@
 <h1>Inventario de bodega</h1>
+<br>
 <table>
   <thead>
     <tr>
@@ -6,13 +7,26 @@
     </tr>
   </thead>
 
+  
+</table>
+
+<table class="table table-hover">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Material</th>
+      <th scope="col">Cantidad</th>
+      <th scope="col">Localización</th>
+    </tr>
+  </thead>
   <tbody>
     <% @material_bodega.each do |mat| %>
       <tr>
         <td><%= mat.material.nombre %></td>
         <td><%= mat.stock_central %></td>
+        <td><%= mat.bodega_central.localizacion %></td>
         
       </tr>
     <% end %>
   </tbody>
+
 </table>
