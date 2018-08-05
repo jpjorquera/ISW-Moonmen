@@ -1,5 +1,6 @@
 class InventarioController < ApplicationController
   def ver
+    NoStockMailer.with(user: current_user).stock_notification.deliver_now
     #current_user. id puesto
     @central = false
     n_bodega = 1
