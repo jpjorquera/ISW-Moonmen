@@ -6,7 +6,7 @@
     <%= current_user.id %>
     <%= form_for(@BC, url: bc_aux_path) do |f| %>
     <%= render 'shared/error_messages' %>
-
+    
       <%= f.label :bodega_central_id %>
       <%= f.select(:bodega_central_id, @BaC_data) %>
 

@@ -14,6 +14,7 @@
        ['Encargado de Compra', 3],
        ['Personal de Obra', 4]
        ]) %>
+
       <%= f.label :nombre %>
       <%= f.text_field :name, class: 'form-control' %>
 
@@ -23,9 +24,39 @@
       <%= f.label :Contraseña %>
       <%= f.password_field :password, class: 'form-control' %>
 
+      <%= f.fields_for :bodegueros_centrales do |builder| %>
+      <p> solo para los bodegueros centrales </p>
+
+         <%= builder.label :bodega_central_id %>
+         <%= builder.select(:bodega_central_id, @BaC_data, :include_blank => true) %>
+
+         <%= builder.label :encargado_compra_id %>
+         <%= builder.select(:encargado_compra_id, @EC_data, :include_blank => true) %>
+
+      <% end %>
+
+      <%= f.fields_for :bodegueros_obras do |builder| %>
+      <p> solo para los bodegueros de obra </p>
+       <%= builder.label :bodega_obra_id %>
+       <%= builder.select(:bodega_obra_id, @BaO_data, :include_blank => true) %>
+
+       <%= builder.label :bodeguero_central_id %>
+       <%= builder.select(:bodeguero_central_id, @BoC_data, :include_blank => true) %>
+      <% end %>
+
+      <%= f.fields_for :personal_obras do |builder| %>
+      <p> solo para el personal de obra </p>
+       <%= builder.label :bodeguero_obra_id %>
+      <%= builder.select(:bodeguero_obra_id, @BoO_data, :include_blank => true) %>
+      <% end %>
+
+      <%= f.fields_for :encargado_compras do |builder| %>
+      <p> solo para el encargado de compras </p>
+      <% end %>
+
       <%= f.submit "Crear Cuenta", class: "btn btn-primary" %>
 
-    <% end %>
+  <% end %>
 
   </div>
 </div>
