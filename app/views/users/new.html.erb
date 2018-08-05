@@ -42,12 +42,14 @@
 
        <%= builder.label :bodeguero_central_id %>
        <%= builder.select(:bodeguero_central_id, @BoC_data, :include_blank => true) %>
+
       <% end %>
 
       <%= f.fields_for :personal_obras do |builder| %>
       <p> solo para el personal de obra </p>
        <%= builder.label :bodeguero_obra_id %>
       <%= builder.select(:bodeguero_obra_id, @BoO_data, :include_blank => true) %>
+
       <% end %>
 
       <%= f.fields_for :encargado_compras do |builder| %>

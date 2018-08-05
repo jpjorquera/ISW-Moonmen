@@ -61,15 +61,19 @@ end
       flash[:success] = "La cuenta fue creada exitosamente !!!"
       if (@user.puesto == 1)
         flash[:success] = "bodeguero obra"
+        #bo = BodegueroObra.create!(user_id : current_user.id, :encargado)
         #@user.bodeguero_obras.save
       elsif (@user.puesto == 2)
         flash[:success] = "bodeguero central"
+        #bc = BodegueroCentral.create!(user_id: current_user.id, :bodega_central_id, :encargado_compra_id)
         #@user.bodeguero_centrals.save
       elsif (@user.puesto == 3)
         flash[:success] = "Encargado de Compra"
+        #ec =
         #@user.encargado_compras.save
       elsif (@user.puesto == 4)
         flash[:success] = "Personal Obra"
+        #po =
         #@user.personal_obras.save
       else
 
@@ -89,10 +93,10 @@ end
 
     def user_params
       params.require(:user).permit(:name, :email, :password, :puesto,
-         bodeguero_central_attributes: [:user_id, :bodega_central_id, :encargado_compra_id],
-         bodeguero_obra_attributes: [:user_id, :bodeguero_central_id, :bodega_obra_id],
-         personal_obra_attributes: [:user_id, :bodeguero_obra_id],
-         encargado_compra_attributes: [:user_id])
+         bodeguero_central_attributes: [:bodega_central_id, :encargado_compra_id],
+         bodeguero_obra_attributes: [:bodeguero_central_id, :bodega_obra_id],
+         personal_obra_attributes: [:bodeguero_obra_id],
+         encargado_compra_attributes: [])
     end
 
     def bc_params
