@@ -22,4 +22,7 @@ class InventarioController < ApplicationController
       @material_bodega = InventarioObra.joins(:material).where(bodega_obra_id: n_bodega)
     end
   end
+
+  def agregar
+  end
 end
