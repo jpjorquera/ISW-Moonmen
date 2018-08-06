@@ -5,7 +5,6 @@
   <div class="col-md-6 col-md-offset-3">
     <%= form_for(@user, url: signup_path) do |f| %>
     <%= render 'shared/error_messages' %>
-
       <%= f.label :nombre %>
       <%= f.text_field :name, class: 'form-control' %>
 
@@ -23,6 +22,34 @@
          ['Encargado de Compra', 3],
          ['Tecnico', 4]
          ]) %>
+
+      <h3> Solo para bodegueros centrales </h3>
+      <%= f.fields_for :bodegueros_centrales do |builder| %>
+
+         <%= builder.label :bodega_central_id %>
+         <%= builder.select(:bodega_central_id, @BaC_data, {:include_blank => true, :class=>'form-control'}) %>
+
+         <%= builder.label :encargado_compra_id %>
+         <%= builder.select(:encargado_compra_id, @EC_data, {:include_blank => true, :class=>'form-control'}) %>
+
+      <% end %>
+
+      <%= f.fields_for :bodegueros_obras do |builder| %>
+      <h3> Solo para los bodegueros de obra </h3>
+       <%= builder.label :bodega_obra_id %>
+       <%= builder.select(:bodega_obra_id, @BaO_data, :include_blank => true) %>
+
+       <%= builder.label :bodeguero_central_id %>
+       <%= builder.select(:bodeguero_central_id, @BoC_data, :include_blank => true) %>
+
+      <% end %>
+
+      <%= f.fields_for :personal_obras do |builder| %>
+      <h3> Solo para el personal de obra </h3>
+       <%= builder.label :bodeguero_obra_id %>
+      <%= builder.select(:bodeguero_obra_id, @BoO_data, :include_blank => true) %>
+
+      <% end %>
 
       <%= f.submit "Crear Cuenta", class: "btn btn-primary" %>
 
