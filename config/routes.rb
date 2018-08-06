@@ -1,5 +1,10 @@
 Rails.application.routes.draw do
+  get '/materiales', to: 'materiales#index'
+  get 'materiales/agregar'
+  get 'materiales/peticion'
   get '/inventario', to: 'inventario#ver'
+  get '/inventario/agregar', to: 'inventario#agregar'
+  post '/inventario/agregar', to: 'inventario#add'
   resources :materials
   resources :inventario_centrals
   resources :abastecimiento_obras

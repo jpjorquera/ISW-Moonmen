@@ -1,0 +1,19 @@
+<h1> Retirar materiales bodega <%= @localizacion %> </h1>
+
+<div class="container">
+<div class="row">
+<div class="col-md-3">
+<% if @central %>
+<select>
+<% mat_array = @material.all.map { |mat| [mat.material.nombre, mat.material.id] } %>
+<%= options_for_select(mat_array) %>>
+</select>
+
+<% else %>
+<% end %>
+</div>
+<div class="col-md-3">
+
+</div>
+</div>
+</div>
