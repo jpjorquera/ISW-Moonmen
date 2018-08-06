@@ -1,0 +1,36 @@
+<h1> Formulario nuevo material </h1>
+<br/>
+<div class="container">
+<div class="row">
+<%= form_tag do %>
+  <div class="col-md-4">
+  </div>
+  <div class="col-md-4">
+  <p>
+  <strong> Nombre material </strong>
+  <%= text_field_tag(:nombre) %>
+  </p>
+  </div>
+</div>
+<div class="row">
+
+  <div class="col-md-4">
+  </div>
+  <div class="col-md-4">
+  <p>
+  <strong> Cantidad </strong>
+  <%= text_field_tag(:cantidad) %>
+  </p>
+  </div>
+</div>
+
+  <div class="row">
+  <div class="col-md-4">
+  </div>
+  <div class="col-md-4">
+  <%= submit_tag("Agregar") %>
+  </div>
+  </div>
+<% end %>
+
+</div>
