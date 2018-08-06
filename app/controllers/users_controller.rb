@@ -54,7 +54,7 @@ class UsersController < ApplicationController
         @personal_obra.save!
       else
       end
-      redirect_to signup_path
+      redirect_to operations_path
     else
       render 'new'
     end

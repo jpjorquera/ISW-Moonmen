@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'testmail', to: 'testmail#index'
   get '/materiales', to: 'materiales#index'
   get 'materiales/agregar'
   get 'materiales/peticion'
