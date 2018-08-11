@@ -40,10 +40,12 @@
 </div>
 </div>
 
+<% if @central %>
 <div class="row">
 <div class="col-xs-12 col-md-6">
 <%= link_to "Agregar nuevo material", {:action=>"agregar", :controller => "inventario" }, :class => "btn btn-default" %>
 </div>
 </div>
+<% end %>
 
 </div>
