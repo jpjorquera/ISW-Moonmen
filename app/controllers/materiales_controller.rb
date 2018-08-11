@@ -22,6 +22,7 @@ class MaterialesController < ApplicationController
     end
   end
   def agregar
+    
   end
 
   def peticion
