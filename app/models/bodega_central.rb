@@ -3,4 +3,5 @@ class BodegaCentral < ApplicationRecord
   has_one :bodeguero_central
   has_many :inventario_centrals
   has_many :abastecimiento_centrals
+  has_many :solicituds
 end

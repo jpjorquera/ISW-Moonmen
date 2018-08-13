@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_07_23_201234) do
+ActiveRecord::Schema.define(version: 2018_08_13_210227) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -126,6 +126,22 @@ ActiveRecord::Schema.define(version: 2018_07_23_201234) do
     t.bigint "encargado_compra_id"
     t.index ["bodeguero_central_id"], name: "index_proveedors_on_bodeguero_central_id"
     t.index ["encargado_compra_id"], name: "index_proveedors_on_encargado_compra_id"
+  end
+
+  create_table "solicitud_materials", force: :cascade do |t|
+    t.bigint "solicitud_id", null: false
+    t.bigint "material_id", null: false
+    t.integer "cantidad", default: 1, null: false
+    t.index ["material_id"], name: "index_solicitud_materials_on_material_id"
+    t.index ["solicitud_id"], name: "index_solicitud_materials_on_solicitud_id"
+  end
+
+  create_table "solicituds", force: :cascade do |t|
+    t.bigint "bodega_obra_id"
+    t.bigint "bodega_central_id"
+    t.integer "estado", default: 0
+    t.index ["bodega_central_id"], name: "index_solicituds_on_bodega_central_id"
+    t.index ["bodega_obra_id"], name: "index_solicituds_on_bodega_obra_id"
   end
 
   create_table "users", force: :cascade do |t|

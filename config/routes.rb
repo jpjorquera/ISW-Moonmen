@@ -19,6 +19,7 @@ Rails.application.routes.draw do
   resources :bodeguero_centrals
   resources :bodeguero_obras
   resources :personal_obras
+  resources :solicituds
   root    'static_pages#home'
   get     '/help', to: 'static_pages#help'
   get     '/about', to: 'static_pages#about'
