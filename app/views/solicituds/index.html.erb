@@ -1,1 +1,25 @@
-hola peluche
+<h1> Solicitudes de materiales </h1>
+
+<div class="solicitudes">
+<% @solicitudes.each do |solicitud| %>
+    <div id="solicitud_<%= solicitud.id %>" class="solicitud">
+        <h4>Solicitado por <%= solicitud.bodega_obra.localizacion %> a <%= solicitud.bodega_central.localizacion %></h4>
+        <table class="table table-condensed">
+            <thead>
+            <tr>
+                <th>Material</th>
+                <th>Cantidad</th>
+            </tr>
+            </thead>
+            <tbody>
+            <% solicitud.solicitud_materials.each do |solmat| %>
+                <tr>
+                    <td><%= solmat.material.nombre %></td>
+                    <td><%= solmat.cantidad %></td>
+                </tr>
+            <% end %>
+        </tbody>
+        </table>
+    </div>
+<% end %>
+</div>

@@ -4,4 +4,5 @@ class Solicitud < ApplicationRecord
   belongs_to :bodega_central
   has_many :solicitud_materials
   has_many :materials, through: :solicitud_materials
+  accepts_nested_attributes_for :solicitud_materials
 end

@@ -1,0 +1,40 @@
+<h1> Solicitar materiales para <%= @bodega_obra.localizacion %> </h1>
+
+
+<%= form_for @solicitado do |f| %>
+<div class="container solicitud_materiales">
+    <button class="agregar_material">Agregar material</button>
+    <br />
+    <%= f.select :bodega_central_id, BodegaCentral.all.map{ |bc| [bc.localizacion, bc.id] } %>
+    <%= f.fields_for :solicitud_materials do |sm| %>
+        <div>
+        <%= sm.select :material_id, @material.map { |mat| [mat.nombre, mat.id] } %>
+        <%= sm.number_field :cantidad %>
+        </div>
+    <% end %>
+    <div class="row solicitud_material_template" style="display: none">
+        <div class="col-md-3">
+            <select>
+            <% mat_array = @material.map { |mat| [mat.nombre, mat.id] } %>
+            <%= options_for_select(mat_array) %>
+            </select>
+        </div>
+        <div class="col-md-3">
+            <input type="number" min="1">
+        </div>
+    </div>
+</div>
+<%= f.submit %>
+<% end %>
+<script>
+
+$(document).ready(function(){
+    var agregar_material = function(){
+        var template = $('.solicitud_material_template');
+        template = template.clone().removeClass('solicitud_material_template').addClass('solicitud_material').show();
+        $('.solicitud_materiales').append(template);
+        
+    };
+    $('.agregar_material').on('click', agregar_material)
+})
+</script>
