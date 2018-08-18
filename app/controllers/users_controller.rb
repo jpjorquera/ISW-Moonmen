@@ -28,10 +28,10 @@ class UsersController < ApplicationController
 
   def new
     @user = User.new
-    @bodeguero_central = BodegueroCentral.new
-    @bodeguero_obra = BodegueroObra.new
-    @encargado_compra = EncargadoCompra.new
-    @personal_obra = PersonalObra.new
+    #@bodeguero_central = BodegueroCentral.new
+    #@bodeguero_obra = BodegueroObra.new
+    #@encargado_compra = EncargadoCompra.new
+    #@personal_obra = PersonalObra.new
     #debugger
   end
 
@@ -41,24 +41,24 @@ class UsersController < ApplicationController
       log_in @user
       flash[:success] = "La cuenta fue creada exitosamente !!!"
       if (@user.puesto == 1)
-        @bodeguero_obra = BodegueroObra.new(user_id: current_user.id , bodega_obra_id: 1   , bodeguero_central_id: 1)
-        @bodeguero_obra.save!
+        redirect_to aux_bodobra_path
       elsif (@user.puesto == 2)
-        @bodeguero_central = BodegueroCentral.new(user_id: current_user.id , bodega_central_id: 1  , encargado_compra_id: 1)
-        @bodeguero_central.save!
+        redirect_to aux_bodcentral_path
       elsif (@user.puesto == 3)
         @encargado_compra = EncargadoCompra.new(user_id: current_user.id)
         @encargado_compra.save!
+        flash[:success] = "El encargado de compra fue creado exitosamente !!!"
+        redirect_to operations_path
       elsif (@user.puesto == 4)
-        @personal_obra = PersonalObra.new(user_id: current_user.id , bodeguero_obra_id: 1)
-        @personal_obra.save!
+        redirect_to aux_personal_path
       else
+        redirect_to operations_path
       end
-      redirect_to operations_path
     else
       render 'new'
     end
   end
+
 
   #  ['Administrador de Pagina', 0],
   #  ['Bodeguero de Obra', 1],

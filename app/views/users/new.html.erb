@@ -1,5 +1,21 @@
 <% provide(:title, 'Sign up') %>
-<h1>Creacion de Cuenta [SuperUsuario]</h1>
+
+<% if @user.errors.any? %>
+  <div id="error_explanation">
+    <div class="alert alert-danger">
+      El formulario tiene <%= @user.errors.count %> error(es).
+    </div>
+    <% if false %>
+    <ul>
+    <% @user.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+    <% end %>
+  </div>
+<% end %>
+
+<h1>Creacion de Cuenta</h1>
 
 <div class="row">
   <div class="col-md-6 col-md-offset-3">
@@ -20,8 +36,10 @@
          ['Bodeguero de Obra', 1],
          ['Bodeguero Central', 2],
          ['Encargado de Compra', 3],
-         ['Tecnico', 4]
+         ['Personal de Obra', 4]
          ]) %>
+
+      <% if false %>
 
       <h3> Solo para bodegueros centrales </h3>
       <%= f.fields_for :bodegueros_centrales do |builder| %>
@@ -48,6 +66,8 @@
       <h3> Solo para el personal de obra </h3>
        <%= builder.label :bodeguero_obra_id %>
       <%= builder.select(:bodeguero_obra_id, @BoO_data, :include_blank => true) %>
+
+      <% end %>
 
       <% end %>
 
