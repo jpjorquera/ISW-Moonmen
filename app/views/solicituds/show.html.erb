@@ -1,14 +1,27 @@
 <div class="row center">
-    <h3>Solicitud de <%= @solicitud.bodega_obra.localizacion %> a <%= @solicitud.bodega_central.localizacion %></h3>
+    <h3>Solicitud de <%= @bodega_obra.localizacion %> a <%= @solicitud.bodega_central.localizacion %></h3>
 </div>
 <br>
-<% form_for @solicitud do |s| %>
-    <div class="row">
-        <%= s.fields_for :solicitud_materials do |sm| %>
-
-        <% end %>
+<div class="row">
+    <div class="col-md-3 col-md-offset-2">
+        <p> Material </p>
     </div>
-<% end %>
+    <div class="col-md-3">
+        <p> Cantidad </p>
+    </div>
+</div>
+
+    <% @sol.each do |sm| %>
+        <div class="row">
+        <div class="col-md-3 col-md-offset-2">
+            <%= sm.material.nombre %>
+        </div>
+        <div class="col-md-3">
+            <%= sm.cantidad%>
+        </div>
+        </div>
+    <% end %>
+
 <br>
 <div class="row">
     <div class="col-md-2 col-md-offset-2">

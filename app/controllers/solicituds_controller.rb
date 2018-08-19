@@ -1,6 +1,6 @@
 class SolicitudsController < ApplicationController
 
-  before_action :obtener_informacion_bodeguero, only: [:new, :create]
+  before_action :obtener_informacion_bodeguero, only: [:new, :create, :show, :add, :add_create]
 
   def index
     @solicitudes = Solicitud.includes(:materials, :bodega_central, :bodega_obra)
@@ -8,6 +8,8 @@ class SolicitudsController < ApplicationController
   
   def show
     @solicitud = Solicitud.find(params[:id])
+    @sol = SolicitudMaterial.includes(:material).where(solicitud_id: params[:id])
+    
   end
 
   def add
@@ -25,6 +27,7 @@ class SolicitudsController < ApplicationController
     #@material = SolicitudMaterial.new()#params_new_mats)#solicitud_id: sol, material_id: mat, cantidad: cant)
     @material = SolicitudMaterial.new(material_id: mat, cantidad: cant, solicitud_id: sol)
     if @material.save
+      #render :show
       redirect_to :action => "show"
     else
       redirect_to :action => "show"
