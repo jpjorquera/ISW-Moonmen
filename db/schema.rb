@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_07_23_201234) do
+ActiveRecord::Schema.define(version: 2018_08_19_190953) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -106,6 +106,10 @@ ActiveRecord::Schema.define(version: 2018_07_23_201234) do
     t.datetime "updated_at", null: false
     t.bigint "proveedor_id"
     t.bigint "encargado_compra_id"
+    t.string "nombre_item"
+    t.string "sku"
+    t.integer "cantidad"
+    t.integer "precio"
     t.index ["encargado_compra_id"], name: "index_orden_compras_on_encargado_compra_id"
     t.index ["proveedor_id"], name: "index_orden_compras_on_proveedor_id"
   end
