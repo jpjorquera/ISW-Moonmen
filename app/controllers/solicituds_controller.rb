@@ -25,13 +25,22 @@ class SolicitudsController < ApplicationController
     sol = params[:id]
     #puts mat, cant, sol
     #@material = SolicitudMaterial.new()#params_new_mats)#solicitud_id: sol, material_id: mat, cantidad: cant)
-    @material = SolicitudMaterial.new(material_id: mat, cantidad: cant, solicitud_id: sol)
-    if @material.save
-      #render :show
-      redirect_to :action => "show"
+    m = SolicitudMaterial.find_by(material_id: mat, solicitud_id: sol)
+    if (m.nil?)
+      @material = SolicitudMaterial.new(material_id: mat, cantidad: cant, solicitud_id: sol)
+      if @material.save
+        #render :show
+        flash[:success] = "Material agregado correctamente"
+        redirect_to :action => "show"
+      else
+        redirect_to :action => "show"
+        flash[:danger] = "No se pudo guardar el material"
+      end
     else
+      sum = m.cantidad+cant.to_i
+      m.update(cantidad: sum)
+      flash[:success] = "Material actualizado correctamente"
       redirect_to :action => "show"
-      flash[:danger] = "No se pudo guardar el material"
     end
   end
 
