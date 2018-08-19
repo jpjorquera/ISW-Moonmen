@@ -1,14 +1,46 @@
 <h1> Solicitudes de materiales </h1>
 
 <div class="solicitudes">
+<ul>
+<div class="row">
+    <div class="col-md-2 col-md-offset-2">
+        <%= link_to "Crear nueva solicitud", {:action => "new"}, class: "btn btn-primary session_button:visited { color:#FFF; }" %>
+    </div>
+</div>
+<br>
 <% @solicitudes.each do |solicitud| %>
-    <div id="solicitud_<%= solicitud.id %>" class="solicitud">
-        <h4>Solicitado por <%= solicitud.bodega_obra.localizacion %> a <%= solicitud.bodega_central.localizacion %></h4>
-        <table class="table table-condensed">
+    <div class="row">
+    <div id="solicitud_<%= solicitud.id %>" class="solicitud col-md-7 col-md-offset-2">
+        <li><h4>Solicitud #<%=solicitud.id%> - de <%= solicitud.bodega_obra.localizacion %> a <%= solicitud.bodega_central.localizacion %></h4></li>
+        <br>
+        <div class="row">
+        <div class="col-md-1">
+        <h5> Estado:  
+        </div>
+        <% if solicitud.estado == "pendiente" %>
+        <div class=col-md-2>
+        <h5 class="bg-warning"><%= solicitud.estado.capitalize %> </h5>
+        </div>
+        <% elsif solicitud.estado == "en camino" %>
+        <div class=col-md-2>
+        <h5 class="bg-primary"><%= solicitud.estado.capitalize %> </h5>
+        </div>
+        <% else %>
+        <div class=col-md-2>
+        <h5 class="bg-success"><%= solicitud.estado.capitalize %> </h5>
+        </div>
+        
+        <% end %>
+        
+        </h5>
+        </div>
+        <div class="row">
+        <div class="col-md-6 col-md-offset-2">
+        <table class="table table-condensed text-center">
             <thead>
             <tr>
-                <th>Material</th>
-                <th>Cantidad</th>
+                <th class="text-center">Material</th>
+                <th class="text-center">Cantidad</th>
             </tr>
             </thead>
             <tbody>
@@ -20,6 +52,10 @@
             <% end %>
         </tbody>
         </table>
+        </div>
+        </div>
+    </div>
     </div>
 <% end %>
+</ul>
 </div>
