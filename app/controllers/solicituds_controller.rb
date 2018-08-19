@@ -9,7 +9,6 @@ class SolicitudsController < ApplicationController
   def show
     @solicitud = Solicitud.find(params[:id])
     @sol = SolicitudMaterial.includes(:material).where(solicitud_id: params[:id])
-    
   end
 
   def add

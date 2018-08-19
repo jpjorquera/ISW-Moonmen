@@ -2,25 +2,35 @@
     <h3>Solicitud #<%= @solicitud.id %> - de <%= @bodega_obra.localizacion %> a <%= @solicitud.bodega_central.localizacion %></h3>
 </div>
 <br>
+<% if @sol.size == 0 %>
 <div class="row">
     <div class="col-md-3 col-md-offset-2">
-        <p> Material </p>
-    </div>
-    <div class="col-md-3">
-        <p> Cantidad </p>
+        <p> <strong> No hay materiales agregados </strong> </p>
     </div>
 </div>
 
+<% else %>
+<div class="row">
+<div class="col-md-6 col-md-offset-2">
+<table class="table table-condensed">
+    <thead>
+    <tr>
+        <th> Material </th>
+        <th> Cantidad </th>
+    </tr>
+    </thead>
+<% end %>
     <% @sol.each do |sm| %>
-        <div class="row">
-        <div class="col-md-3 col-md-offset-2">
-            <%= sm.material.nombre %>
-        </div>
-        <div class="col-md-3">
-            <%= sm.cantidad%>
-        </div>
-        </div>
+        <tbody>
+        <tr>
+        <td><%= sm.material.nombre %></td>
+        <td><%= sm.cantidad%></td>
+        </tr>
+        </tdody>
     <% end %>
+</table>
+</div>
+</div>
 
 <br>
 <div class="row">
