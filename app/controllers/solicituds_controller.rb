@@ -13,7 +13,7 @@ class SolicitudsController < ApplicationController
   def new
     @solicitado = Solicitud.new(bodega_obra: @bodega_obra)
     @solicitado.solicitud_materials.new
-    @solicitado.solicitud_materials.new
+    #@solicitado.solicitud_materials.new
   end
 
   def create

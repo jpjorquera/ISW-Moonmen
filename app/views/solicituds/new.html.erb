@@ -1,15 +1,34 @@
 <h1> Solicitar materiales para <%= @bodega_obra.localizacion %> </h1>
 
-
+<button class="agregar_material">Agregar material</button>
+<br />
+<br />
 <%= form_for @solicitado do |f| %>
 <div class="container solicitud_materiales">
-    <button class="agregar_material">Agregar material</button>
-    <br />
-    <%= f.select :bodega_central_id, BodegaCentral.all.map{ |bc| [bc.localizacion, bc.id] } %>
+    <div class="row">
+        <div class="col-md-3">
+            <p> Seleccione bodega a solicitar: </p>
+        </div>
+        <div class="col-md-3">
+            <%= f.select :bodega_central_id, BodegaCentral.all.map{ |bc| [bc.localizacion, bc.id] } %>
+        </div>
+    </div>
+    <div class="row">
+            <div class="col-md-3">
+                <p> Material </p>
+            </div>
+            <div class="col-md-3">
+                <p> Cantidad </p>
+            </div>
+    </div>
     <%= f.fields_for :solicitud_materials do |sm| %>
-        <div>
-        <%= sm.select :material_id, @material.map { |mat| [mat.nombre, mat.id] } %>
-        <%= sm.number_field :cantidad %>
+        <div class="row">
+            <div class="col-md-3">
+                <%= sm.select :material_id, @material.map { |mat| [mat.nombre, mat.id] } %>
+            </div>
+            <div class="col-md-3">
+                <%= sm.number_field :cantidad %>
+            </div>
         </div>
     <% end %>
     <div class="row solicitud_material_template" style="display: none">
