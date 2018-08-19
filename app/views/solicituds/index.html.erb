@@ -4,7 +4,7 @@
 <ul>
 <div class="row">
     <div class="col-md-2 col-md-offset-2">
-        <%= link_to "Crear nueva solicitud", {:action => "new"}, class: "btn btn-primary session_button:visited { color:#FFF; }" %>
+        <%= link_to "Crear nueva solicitud", {:action => "new"}, class: "btn btn-primary" %>
     </div>
 </div>
 <br>
@@ -21,7 +21,7 @@
         <div class=col-md-2>
         <h5 class="bg-warning"><%= solicitud.estado.capitalize %> </h5>
         </div>
-        <% elsif solicitud.estado == "en camino" %>
+        <% elsif solicitud.estado == "en_camino" %>
         <div class=col-md-2>
         <h5 class="bg-primary"><%= solicitud.estado.capitalize %> </h5>
         </div>
@@ -36,7 +36,7 @@
         </div>
         <div class="row">
         <div class="col-md-6 col-md-offset-2">
-        <table class="table table-condensed text-center">
+        <table class="table table-condensed table-hover text-center">
             <thead>
             <tr>
                 <th class="text-center">Material</th>

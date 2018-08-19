@@ -12,7 +12,7 @@
 <% else %>
 <div class="row">
 <div class="col-md-6 col-md-offset-2">
-<table class="table table-condensed">
+<table class="table table-condensed table-hover">
     <thead>
     <tr>
         <th> Material </th>
@@ -36,5 +36,11 @@
 <div class="row">
     <div class="col-md-2 col-md-offset-2">
         <%= button_to "Agregar material", :action => "add" %>
+    </div>
+</div>
+<br>
+<div class="row">
+    <div class="col-md-2 col-md-offset-2">
+        <%= button_to "Enviar solicitud", {:action => "enviar"}, class: "btn btn-primary" %>
     </div>
 </div>

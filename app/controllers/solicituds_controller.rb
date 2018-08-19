@@ -62,6 +62,19 @@ class SolicitudsController < ApplicationController
     end
   end
 
+  def enviar
+    solicitud = Solicitud.find_by(id: params[:id])
+    count = solicitud.solicitud_materials.size
+    if count == 0
+      redirect_to :action => "show"
+      flash[:danger] = "Debe agregar materiales para enviar una solicitud"
+    else
+      solicitud.update(estado: 1)
+      redirect_to :action => "index"
+      flash[:success] = "Su solicitud fue enviada correctamente"
+    end
+  end
+
   def update
   
   end
