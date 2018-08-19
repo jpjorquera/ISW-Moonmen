@@ -1,0 +1,17 @@
+<h1> en agregar id: <%= @solicitud.id %></h1>
+
+<%= form_for(@mat, :url => { :action => "add_create" }) do |sm| %>
+    <div class="row">
+        <div class="col-md-2 col-md-offset-2">
+            <%= sm.select :material_id, @material.map { |mat| [mat.nombre, mat.id] } %>
+        </div>
+        <div class="col-md-2">
+            <%= sm.number_field :cantidad, min: 1 %>
+        </div>
+    </div>
+<div class="row">
+    <div class="col-md-2 col-md-offset-2">
+        <%= submit_tag("Agregar") %>
+    </div>
+</div>
+<% end %>

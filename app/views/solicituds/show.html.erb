@@ -1,0 +1,17 @@
+<div class="row center">
+    <h3>Solicitud de <%= @solicitud.bodega_obra.localizacion %> a <%= @solicitud.bodega_central.localizacion %></h3>
+</div>
+<br>
+<% form_for @solicitud do |s| %>
+    <div class="row">
+        <%= s.fields_for :solicitud_materials do |sm| %>
+
+        <% end %>
+    </div>
+<% end %>
+<br>
+<div class="row">
+    <div class="col-md-2 col-md-offset-2">
+        <%= button_to "Agregar material", :action => "add" %>
+    </div>
+</div>

@@ -21,7 +21,7 @@
                 <p> Cantidad </p>
             </div>
     </div>
-    <%= f.fields_for :solicitud_materials do |sm| %>
+    <%= f.fields_for :solicitud_materials, @sol do |sm| %>
         <div class="row">
             <div class="col-md-3">
                 <%= sm.select :material_id, @material.map { |mat| [mat.nombre, mat.id] } %>
@@ -30,18 +30,16 @@
                 <%= sm.number_field :cantidad %>
             </div>
         </div>
+        <div class="row solicitud_material_template" style="display: none">
+            <div class="col-md-3">
+                <%= sm.select :material_id, @material.map { |mat| [mat.nombre, mat.id] } %>
+            </div>
+            <div class="col-md-3">
+                <%= sm.number_field :cantidad %>
+            </div>
+        </div>
     <% end %>
-    <div class="row solicitud_material_template" style="display: none">
-        <div class="col-md-3">
-            <select>
-            <% mat_array = @material.map { |mat| [mat.nombre, mat.id] } %>
-            <%= options_for_select(mat_array) %>
-            </select>
-        </div>
-        <div class="col-md-3">
-            <input type="number" min="1">
-        </div>
-    </div>
+    
 </div>
 <%= f.submit %>
 <% end %>

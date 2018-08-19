@@ -6,6 +6,8 @@ Rails.application.routes.draw do
   get '/inventario', to: 'inventario#ver'
   get '/inventario/agregar', to: 'inventario#agregar'
   post '/inventario/agregar', to: 'inventario#add'
+  post '/solicituds/:id/add', to: 'solicituds#add'
+  post '/solicituds/:id/add_create', to: 'solicituds#add_create'
   resources :materials
   resources :inventario_centrals
   resources :abastecimiento_obras

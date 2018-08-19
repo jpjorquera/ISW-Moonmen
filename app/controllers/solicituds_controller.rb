@@ -7,12 +7,34 @@ class SolicitudsController < ApplicationController
   end
   
   def show
-    
+    @solicitud = Solicitud.find(params[:id])
+  end
+
+  def add
+    @solicitud = Solicitud.find(params[:id])
+    @material = Material.all
+    @mat = @solicitud.solicitud_materials.build
+  end
+
+  def add_create
+    par_sol = params[:solicitud_material]
+    mat = par_sol[:material_id]
+    cant = par_sol[:cantidad]
+    sol = params[:id]
+    #puts mat, cant, sol
+    #@material = SolicitudMaterial.new()#params_new_mats)#solicitud_id: sol, material_id: mat, cantidad: cant)
+    @material = SolicitudMaterial.new(material_id: mat, cantidad: cant, solicitud_id: sol)
+    if @material.save
+      redirect_to :action => "show"
+    else
+      redirect_to :action => "show"
+      flash[:danger] = "No se pudo guardar el material"
+    end
   end
 
   def new
     @solicitado = Solicitud.new(bodega_obra: @bodega_obra)
-    @solicitado.solicitud_materials.new
+    #@sol = 3.times { @solicitado.solicitud_materials.build }
     #@solicitado.solicitud_materials.new
   end
 
@@ -20,16 +42,17 @@ class SolicitudsController < ApplicationController
     @solicitud = Solicitud.new(params_nueva_solicitud)
     @solicitud.bodega_obra = @bodega_obra
     if @solicitud.save
-      redirect_to action: :index
-      flash[:notice] = "Solicitud creada"
+      #redirect_to action: :index
+      redirect_to @solicitud
+      flash[:success] = "Solicitud creada"
     else
       render :new
-      flash[:alert] = "No se pudo crear la solicitud"
+      flash[:danger] = "No se pudo crear la solicitud"
     end
   end
 
   def update
-
+  
   end
 
   def destroy
@@ -48,5 +71,11 @@ class SolicitudsController < ApplicationController
       require(:solicitud).
       permit(:bodega_central_id, solicitud_materials_attributes: [:material_id, :cantidad])
   end
+
+  'def params_new_mats
+    params.
+      require(:solicitud_material).
+      permit(:material_id, :cantidad)
+  end'
 
 end
