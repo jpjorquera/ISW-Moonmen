@@ -3,10 +3,14 @@ class SolicitudsController < ApplicationController
   before_action :obtener_informacion_bodeguero, only: [:new, :create, :show, :add, :add_create]
 
   def index
-    if current_user.puesto != 1
+    if (current_user.puesto != 1) && (current_user.puesto != 2)
       redirect_to operations_path
     end
-    @solicitudes = Solicitud.includes(:materials, :bodega_central, :bodega_obra)
+    if current_user.puesto == 1
+      @solicitudes = Solicitud.includes(:materials, :bodega_central, :bodega_obra).where(bodega_obra_id: current_user.bodega_obras[0].id)
+    else
+      @solicitudes = Solicitud.includes(:materials, :bodega_central, :bodega_obra).where(bodega_central_id: current_user.bodega_central[0].id)
+    end
   end
   
   def show
@@ -82,6 +86,10 @@ class SolicitudsController < ApplicationController
     end
   end
 
+  def responder
+    @solicitud = Solicitud.find(params[:id])
+  end
+
   def update
   
   end
@@ -91,10 +99,16 @@ class SolicitudsController < ApplicationController
   end
 
   def obtener_informacion_bodeguero
-    bodeguero = BodegueroObra.find_by user_id: current_user.id
-    n_bodega = bodeguero.bodega_obra_id
-    @bodega_obra = BodegaObra.find(n_bodega)
+    if current_user.puesto == 1
+      bodeguero = BodegueroObra.find_by user_id: current_user.id
+      n_bodega = bodeguero.bodega_obra_id
+      @bodega_obra = BodegaObra.find(n_bodega)
+    else
+      bodeguero = BodegueroCentral.find_by user_id: current_user.id
+      n_bodega = bodeguero.bodega_central_id
+      @bodega_central = BodegaCentral.find(n_bodega)
     @material = Material.all
+    end
   end
 
   def params_nueva_solicitud

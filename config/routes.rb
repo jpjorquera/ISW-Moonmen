@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   post '/solicituds/:id/add', to: 'solicituds#add'
   post '/solicituds/:id/add_create', to: 'solicituds#add_create'
   post '/solicituds/:id/enviar', to: 'solicituds#enviar'
+  post '/solicituds/responder', to: 'solicituds#responder'
   resources :materials
   resources :inventario_centrals
   resources :abastecimiento_obras
