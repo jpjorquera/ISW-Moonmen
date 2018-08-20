@@ -6,6 +6,8 @@ Rails.application.routes.draw do
   get '/inventario', to: 'inventario#ver'
   get '/inventario/agregar', to: 'inventario#agregar'
   post '/inventario/agregar', to: 'inventario#add'
+  get '/inventario/sacar', to: 'inventario#sacar'
+  post '/inventario/sacar/update', to: 'inventario#update_sacar'
   post '/solicituds/:id/add', to: 'solicituds#add'
   post '/solicituds/:id/add_create', to: 'solicituds#add_create'
   post '/solicituds/:id/enviar', to: 'solicituds#enviar'

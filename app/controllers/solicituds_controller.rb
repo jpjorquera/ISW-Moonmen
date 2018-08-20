@@ -78,7 +78,7 @@ class SolicitudsController < ApplicationController
         SolicitudObras.with(solicitud: solicitud, user: bod.user).solicitud_obras.deliver_later
       end
       redirect_to :action => "index"
-      flash[:success] = "Su solicitud fue enviada correctamente"
+      flash[:success] = "Su solicitud fue enviada correctamente, se notificará a la bodega correspondiente"
     end
   end
 

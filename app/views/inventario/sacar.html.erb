@@ -1,0 +1,29 @@
+<h1> Retirar materiales de <%= @personal.bodeguero_obra.bodega_obra.localizacion %> </h1>
+<div class="container">
+    <div class="row">
+        <div class="col-md-2 col-md-offset-2">
+            <p> Eliga material: </p>
+        </div>
+        <div class="col-md-2">
+            <p> Cantidad: </p>
+        </div>
+    </div>
+</div>
+<div class="container">
+<%= form_for(@mat, :url => { :action => "update_sacar" }) do |m| %>
+    <div class="row">
+        <div class="col-md-2 col-md-offset-2">
+            <%= m.select :material_id, @inv.map { |io| [io.material.nombre, io.material.id] } %>
+        </div>
+        <div class="col-md-2">
+            <%= m.number_field :stock_obra, min: 1 %>
+        </div>
+    </div>
+<br>
+<div class="row">
+    <div class="col-md-2 col-md-offset-2">
+        <%= submit_tag("Retirar") %>
+    </div>
+</div>
+<% end %>
+</div>
