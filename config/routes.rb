@@ -6,6 +6,9 @@ Rails.application.routes.draw do
   get '/inventario', to: 'inventario#ver'
   get '/inventario/agregar', to: 'inventario#agregar'
   post '/inventario/agregar', to: 'inventario#add'
+  post '/solicituds/:id/add', to: 'solicituds#add'
+  post '/solicituds/:id/add_create', to: 'solicituds#add_create'
+  post '/solicituds/:id/enviar', to: 'solicituds#enviar'
   resources :materials
   resources :inventario_centrals
   resources :abastecimiento_obras
@@ -19,6 +22,7 @@ Rails.application.routes.draw do
   resources :bodeguero_centrals
   resources :bodeguero_obras
   resources :personal_obras
+  resources :solicituds
   root    'static_pages#home'
   get     '/help', to: 'static_pages#help'
   get     '/about', to: 'static_pages#about'

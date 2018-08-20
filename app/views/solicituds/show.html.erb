@@ -1,0 +1,46 @@
+<div class="row center">
+    <h3>Solicitud #<%= @solicitud.id %> - de <%= @bodega_obra.localizacion %> a <%= @solicitud.bodega_central.localizacion %></h3>
+</div>
+<br>
+<% if @sol.size == 0 %>
+<div class="row">
+    <div class="col-md-3 col-md-offset-2">
+        <p> <strong> No hay materiales agregados </strong> </p>
+    </div>
+</div>
+
+<% else %>
+<div class="row">
+<div class="col-md-6 col-md-offset-2">
+<table class="table table-condensed table-hover">
+    <thead>
+    <tr>
+        <th> Material </th>
+        <th> Cantidad </th>
+    </tr>
+    </thead>
+<% end %>
+    <% @sol.each do |sm| %>
+        <tbody>
+        <tr>
+        <td><%= sm.material.nombre %></td>
+        <td><%= sm.cantidad%></td>
+        </tr>
+        </tbody>
+    <% end %>
+</table>
+</div>
+</div>
+
+<br>
+<div class="row">
+    <div class="col-md-2 col-md-offset-2">
+        <%= button_to "Agregar material", :action => "add" %>
+    </div>
+</div>
+<br>
+<div class="row">
+    <div class="col-md-2 col-md-offset-2">
+        <%= button_to "Enviar solicitud", {:action => "enviar"}, class: "btn btn-primary" %>
+    </div>
+</div>

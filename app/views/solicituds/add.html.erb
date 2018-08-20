@@ -1,0 +1,25 @@
+<h1> Solicitud #<%= @solicitud.id %> a bodega de <%=@solicitud.bodega_central.localizacion%></h1>
+    <div class="row">
+        <div class="col-md-2 col-md-offset-2">
+            <h5> Material: </h5>
+        </div>
+        <div class="col-md-2">
+            <h5> Cantidad: </h5>
+        </div>
+    </div>
+<%= form_for(@mat, :url => { :action => "add_create" }) do |sm| %>
+    <div class="row">
+        <div class="col-md-2 col-md-offset-2">
+            <%= sm.select :material_id, @material.map { |mat| [mat.nombre, mat.id] } %>
+        </div>
+        <div class="col-md-2">
+            <%= sm.number_field :cantidad, min: 1 %>
+        </div>
+    </div>
+<br>
+<div class="row">
+    <div class="col-md-2 col-md-offset-2">
+        <%= submit_tag("Agregar") %>
+    </div>
+</div>
+<% end %>

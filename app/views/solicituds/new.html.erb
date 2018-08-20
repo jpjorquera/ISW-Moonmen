@@ -1,0 +1,53 @@
+<h1> Solicitar materiales para bodega <%= @bodega_obra.localizacion %> </h1>
+
+<br />
+<br />
+<%= form_for @solicitado do |f| %>
+<div class="container solicitud_materiales col-md-offset-2">
+    <div class="row">
+        <div class="col-md-3">
+            <p> Seleccione bodega a solicitar: </p>
+        </div>
+        <div class="col-md-3">
+            <%= f.select :bodega_central_id, BodegaCentral.all.map{ |bc| [bc.localizacion, bc.id] } %>
+        </div>
+    </div>
+    <%= f.fields_for :solicitud_materials, @sol do |sm| %>
+        <div class="row">
+            <div class="col-md-3">
+                <%= sm.select :material_id, @material.map { |mat| [mat.nombre, mat.id] } %>
+            </div>
+            <div class="col-md-3">
+                <%= sm.number_field :cantidad %>
+            </div>
+        </div>
+        <div class="row solicitud_material_template" style="display: none">
+            <div class="col-md-3">
+                <%= sm.select :material_id, @material.map { |mat| [mat.nombre, mat.id] } %>
+            </div>
+            <div class="col-md-3">
+                <%= sm.number_field :cantidad %>
+            </div>
+        </div>
+    <% end %>
+    
+</div>
+<br>
+<br>
+<div class="row">
+<div class="col-md-3 col-md-offset-2">
+<%= f.submit %>
+</div>
+<% end %>
+<script>
+
+$(document).ready(function(){
+    var agregar_material = function(){
+        var template = $('.solicitud_material_template');
+        template = template.clone().removeClass('solicitud_material_template').addClass('solicitud_material').show();
+        $('.solicitud_materiales').append(template);
+        
+    };
+    $('.agregar_material').on('click', agregar_material)
+})
+</script>
