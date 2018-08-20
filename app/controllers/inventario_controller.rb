@@ -73,8 +73,11 @@ class InventarioController < ApplicationController
       flash[:danger] = "No hay suficientes materiales"
       redirect_to :action => "ver"
     elsif  dif == 0
-      actual.update(stock_obra: dif)
-      flash[:success] = "Material retirado correctamente"
+      bodegueros = BodegueroObra.where(bodega_obra_id: n_bodega)
+      bodegueros.each do |bod|
+        NoStockMailer.with(user: bod.user, io: actual).stock_notification.deliver_later
+      end
+      flash[:success] = "Material retirado correctamente, informando falta de stock"
       actual.delete
       redirect_to :action => "ver"
     else

@@ -1,6 +1,7 @@
 class User < ApplicationRecord
   has_many :pesonal_obras
-  has_many :bodeguero_obras
+  has_many :bodeguero_obras , -> { includes :bodega_obra }
+  has_many :bodega_obras, through: :bodeguero_obras
   has_many :encargado_compras
   has_many :bodeguero_centrals
   #has_many :bodeguero_centrals
