@@ -3,6 +3,9 @@ class SolicitudsController < ApplicationController
   before_action :obtener_informacion_bodeguero, only: [:new, :create, :show, :add, :add_create]
 
   def index
+    if current_user.puesto != 1
+      redirect_to operations_path
+    end
     @solicitudes = Solicitud.includes(:materials, :bodega_central, :bodega_obra)
   end
   
@@ -69,7 +72,7 @@ class SolicitudsController < ApplicationController
       redirect_to :action => "show"
       flash[:danger] = "Debe agregar materiales para enviar una solicitud"
     else
-      solicitud.update(estado: 1)
+      #solicitud.update(estado: 1)
       @bodegueros = BodegueroCentral.where(bodega_central_id: solicitud.bodega_central.id)
       @bodegueros.each do |bod|
         SolicitudObras.with(solicitud: solicitud, user: bod.user).solicitud_obras.deliver_later
