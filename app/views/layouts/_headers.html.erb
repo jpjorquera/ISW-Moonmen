@@ -3,7 +3,9 @@
     <%= link_to "GPI", root_path, id: "logo" %>
     <nav>
       <ul class="nav navbar-nav navbar-right">
+        <% if !current_user.nil? %>
         <li><%= link_to "Home", operations_path %></li>
+        <% end %>
         <li><%= link_to "Ayuda", help_path %></li>
         <% if logged_in? %>
         <li><%= link_to "Desconectar", logout_path, method: :delete %></li>
