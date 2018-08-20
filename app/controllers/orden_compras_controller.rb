@@ -29,6 +29,7 @@ class OrdenComprasController < ApplicationController
   # GET /orden_compras/new
   def new
     @orden_compra = OrdenCompra.new
+    @orden_compra.registro_materials.build
   end
 
   # GET /orden_compras/1/edit
@@ -83,6 +84,8 @@ class OrdenComprasController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def orden_compra_params
-      params.require(:orden_compra).permit(:numero_orden, :proveedor_id, :encargado_compra_id, :nombre_item, :sku, :cantidad, :precio)
+      params.require(:orden_compra).permit(:numero_orden, :proveedor_id, :encargado_compra_id, :nombre_item, :sku, :cantidad)
+      #registro_materials_attributes: [:id, :nombre_item, :sku, :cantidad, :precio, :descripcion])
     end
+
 end

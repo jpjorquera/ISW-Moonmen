@@ -15,25 +15,6 @@
   <%= @orden_compra.encargado_compra_id %>
 </p>
 
-<p>
-  <b>Nombre del Item:</b>
-  <%= @orden_compra.nombre_item %>
-</p>
-
-<p>
-  <b>SKU:</b>
-  <%= @orden_compra.sku %>
-</p>
-
-<p>
-  <b>cantidad:</b>
-  <%= @orden_compra.cantidad %>
-</p>
-
-<p>
-  <b>precio:</b>
-  <%= @orden_compra.precio %>
-</p>
 
 <%= link_to 'Edit', edit_orden_compra_path(@orden_compra) %> |
 <%= link_to 'Back', orden_compras_path %>

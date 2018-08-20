@@ -17,28 +17,17 @@
   <%= form.label :proveedor_id %>
   <%= form.select(:proveedor_id, @proveedor_data) %>
 
-  <%= f.hidden_field :encargado_compra_id, value: current_user.id %>
+  <%= form.label :encargado_compra_id %>
+  <%= form.select(:encargado_compra_id, @EC_data) %>
 
+  <p><%= link_to_add_fields "Agregar Material", form, :registro_materials %></p>
 
-  <% f.fields_for :registro_materials do |builder| %>
-  <p>
-    <%= builder.label :nombre_item %>
-    <%= builder.text_field :nombre_item, class: 'form-control' %>
+  <% form.fields_for :registro_materials do |builder| %>
 
-    <%= builder.label :sku %>
-    <%= builder.text_field :sku, class: 'form-control' %>
+  <% render 'registro_material_fields', :f => builder %>
 
-    <%= builder.label :cantidad %>
-    <%= builder.text_field :cantidad, class: 'form-control' %>
-
-    <%= builder.label :precio %>
-    <%= builder.text_field :precio, class: 'form-control' %>
-
-    <%= builder.label :descripcion %>
-    <%= builder.text_area :descripcion, :rows => 3 %>
-  </p>
   <% end %>
-  
+
   <%= form.submit "Generar Orden", class: "btn btn-primary" %>
 
 <% end %>
