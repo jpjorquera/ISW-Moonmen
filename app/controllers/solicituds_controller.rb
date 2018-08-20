@@ -63,13 +63,17 @@ class SolicitudsController < ApplicationController
   end
 
   def enviar
-    solicitud = Solicitud.find_by(id: params[:id])
+    solicitud = Solicitud.includes(:materials, :bodega_central, :bodega_obra).find_by(id: params[:id])
     count = solicitud.solicitud_materials.size
     if count == 0
       redirect_to :action => "show"
       flash[:danger] = "Debe agregar materiales para enviar una solicitud"
     else
       solicitud.update(estado: 1)
+      @bodegueros = BodegueroCentral.where(bodega_central_id: solicitud.bodega_central.id)
+      @bodegueros.each do |bod|
+        SolicitudObras.with(solicitud: solicitud, user: bod.user).solicitud_obras.deliver_now
+      end
       redirect_to :action => "index"
       flash[:success] = "Su solicitud fue enviada correctamente"
     end
