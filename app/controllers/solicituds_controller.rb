@@ -72,7 +72,7 @@ class SolicitudsController < ApplicationController
       solicitud.update(estado: 1)
       @bodegueros = BodegueroCentral.where(bodega_central_id: solicitud.bodega_central.id)
       @bodegueros.each do |bod|
-        SolicitudObras.with(solicitud: solicitud, user: bod.user).solicitud_obras.deliver_now
+        SolicitudObras.with(solicitud: solicitud, user: bod.user).solicitud_obras.deliver_later
       end
       redirect_to :action => "index"
       flash[:success] = "Su solicitud fue enviada correctamente"
