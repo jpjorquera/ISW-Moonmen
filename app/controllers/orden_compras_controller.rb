@@ -84,8 +84,8 @@ class OrdenComprasController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def orden_compra_params
-      params.require(:orden_compra).permit(:numero_orden, :proveedor_id, :encargado_compra_id, :nombre_item, :sku, :cantidad)
-      #registro_materials_attributes: [:id, :nombre_item, :sku, :cantidad, :precio, :descripcion])
+      params.require(:orden_compra).permit(:numero_orden, :proveedor_id, :encargado_compra_id, :nombre_item, :sku, :cantidad,
+      registro_materials_attributes: [:id, :nombre_item, :sku, :cantidad, :precio, :descripcion])
     end
 
 end
