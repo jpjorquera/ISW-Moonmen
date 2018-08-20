@@ -1,4 +1,39 @@
 <p id="notice"><%= notice %></p>
 
+<p>
+  <b>Numero Orden:</b>
+  <%= @orden_compra.numero_orden %>
+</p>
+
+<p>
+  <b>ID Proveedor:</b>
+  <%= @orden_compra.proveedor_id %>
+</p>
+
+<p>
+  <b>ID Encargado de Compra:</b>
+  <%= @orden_compra.encargado_compra_id %>
+</p>
+
+<p>
+  <b>Nombre del Item:</b>
+  <%= @orden_compra.nombre_item %>
+</p>
+
+<p>
+  <b>SKU:</b>
+  <%= @orden_compra.sku %>
+</p>
+
+<p>
+  <b>cantidad:</b>
+  <%= @orden_compra.cantidad %>
+</p>
+
+<p>
+  <b>precio:</b>
+  <%= @orden_compra.precio %>
+</p>
+
 <%= link_to 'Edit', edit_orden_compra_path(@orden_compra) %> |
 <%= link_to 'Back', orden_compras_path %>

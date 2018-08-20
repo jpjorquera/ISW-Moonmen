@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+  #####Seccion del API
+  namespace :api do
+    resources :orden_compras
+  end
+  #####
   get 'aux_bodobra', to: 'reg_aux#bodobra'
   get 'aux_bodcentral', to: 'reg_aux#bodcentral'
   get 'aux_personal', to: 'reg_aux#personal'
