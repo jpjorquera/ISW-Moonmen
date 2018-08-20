@@ -37,12 +37,15 @@ class InventarioController < ApplicationController
         bodeguero = BodegueroCentral.find_by user_id: current_user.id
         stock = InventarioCentral.new(material_id: id, bodega_central_id: bodeguero.bodega_central_id, stock_central: params[:cantidad])
         stock.save!
+        flash[:success] = "Material agregado exitosamente"
       else
+        flash[:danger] = "Error al agregar el material"
       end
     else
       bodeguero = BodegueroCentral.find_by user_id: current_user.id
       id = buscar.id
       stock = InventarioCentral.where(material_id: id, bodega_central_id: bodeguero.bodega_central_id).update(stock_central: params[:cantidad])
+      flash[:info] = "Material existente actualizado"
     end
     redirect_to inventario_path
     
