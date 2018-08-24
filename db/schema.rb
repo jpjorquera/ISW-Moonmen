@@ -10,7 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 2018_08_13_210227) do
+=======
+ActiveRecord::Schema.define(version: 2018_08_19_235911) do
+>>>>>>> c718503d9a5d2b3c78313453092b81c43ae96b92
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -128,6 +132,7 @@ ActiveRecord::Schema.define(version: 2018_08_13_210227) do
     t.index ["encargado_compra_id"], name: "index_proveedors_on_encargado_compra_id"
   end
 
+<<<<<<< HEAD
   create_table "solicitud_materials", force: :cascade do |t|
     t.bigint "solicitud_id", null: false
     t.bigint "material_id", null: false
@@ -142,6 +147,18 @@ ActiveRecord::Schema.define(version: 2018_08_13_210227) do
     t.integer "estado", default: 0
     t.index ["bodega_central_id"], name: "index_solicituds_on_bodega_central_id"
     t.index ["bodega_obra_id"], name: "index_solicituds_on_bodega_obra_id"
+=======
+  create_table "registro_materials", force: :cascade do |t|
+    t.string "nombre_item"
+    t.string "sku"
+    t.string "descripcion"
+    t.integer "cantidad"
+    t.integer "precio"
+    t.bigint "orden_compra_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["orden_compra_id"], name: "index_registro_materials_on_orden_compra_id"
+>>>>>>> c718503d9a5d2b3c78313453092b81c43ae96b92
   end
 
   create_table "users", force: :cascade do |t|
@@ -154,4 +171,5 @@ ActiveRecord::Schema.define(version: 2018_08_13_210227) do
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
+  add_foreign_key "registro_materials", "orden_compras"
 end

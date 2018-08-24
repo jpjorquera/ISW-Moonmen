@@ -1,6 +1,14 @@
 class OrdenComprasController < ApplicationController
-  before_action :set_orden_compra, only: [:show, :edit, :update, :destroy]
+  before_action :set_orden_compra , only: [:show, :edit, :update, :destroy]
+  before_action :EncargadoCompra_all, :Proveedor_all
 
+  def Proveedor_all
+    @proveedor_data = Proveedor.all.ids
+  end
+
+  def EncargadoCompra_all
+    @EC_data = EncargadoCompra.all.ids
+  end
   # GET /orden_compras
   # GET /orden_compras.json
   def index
@@ -10,11 +18,18 @@ class OrdenComprasController < ApplicationController
   # GET /orden_compras/1
   # GET /orden_compras/1.json
   def show
+    @orden_compras = OrdenCompra.find(params[:id])
+
+    respond_to do |format|
+      format.html  # show.html.erb
+      format.json  { render :json => @orden_compras }
+    end
   end
 
   # GET /orden_compras/new
   def new
     @orden_compra = OrdenCompra.new
+    @orden_compra.registro_materials.build
   end
 
   # GET /orden_compras/1/edit
@@ -69,6 +84,8 @@ class OrdenComprasController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def orden_compra_params
-      params.fetch(:orden_compra, {})
+      params.require(:orden_compra).permit(:numero_orden, :proveedor_id, :encargado_compra_id, :nombre_item, :sku, :cantidad,
+      registro_materials_attributes: [:id, :nombre_item, :sku, :cantidad, :precio, :descripcion])
     end
+
 end

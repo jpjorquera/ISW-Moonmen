@@ -1,4 +1,4 @@
-<%= form_with(model: orden_compra, local: true) do |form| %>
+<%= nested_form_for @orden_compra do |form| %>
   <% if orden_compra.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(orden_compra.errors.count, "error") %> prohibited this orden_compra from being saved:</h2>
@@ -11,7 +11,40 @@
     </div>
   <% end %>
 
-  <div class="actions">
-    <%= form.submit %>
-  </div>
+  <%= form.label :numero_orden %>
+  <%= form.text_field :numero_orden, class: 'form-control' %>
+
+  <%= form.label :proveedor_id %>
+  <%= form.select(:proveedor_id, @proveedor_data) %>
+
+  <%= form.label :encargado_compra_id %>
+  <%= form.select(:encargado_compra_id, @EC_data) %>
+
+  <p><%= form.link_to_add "Agregar Material", :registro_materials %></p>
+
+  <% form.fields_for :registro_materials do |builder| %>
+
+  <p>
+    <%= builder.label :nombre_item %>
+    <%= builder.text_field :nombre_item, class: 'form-control' %>
+
+    <%= builder.label :sku %>
+    <%= builder.text_field :sku, class: 'form-control' %>
+
+    <%= builder.label :cantidad %>
+    <%= builder.text_field :cantidad, class: 'form-control' %>
+
+    <%= builder.label :precio %>
+    <%= builder.text_field :precio, class: 'form-control' %>
+
+    <%= builder.label :descripcion %>
+    <%= builder.text_area :descripcion, :rows => 3 %>
+  </p>
+
+  <%= builder.link_to_remove "Quitar Material" %>
+
+  <% end %>
+
+  <%= form.submit "Generar Orden", class: "btn btn-primary" %>
+
 <% end %>

@@ -1,0 +1,19 @@
+<% provide(:title, 'PO-aux') %>
+<h1>Confirmacion Personal de Obra</h1>
+
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <%= form_for(PersonalObra.new, url: aux_personal_path) do |f| %>
+    <%= render 'shared/error_messages' %>
+
+    <%= f.label :bodeguero_obra_id %>
+    <%= f.select(:bodeguero_obra_id, @BoO_data) %>
+
+      <%= f.hidden_field :user_id, value: current_user.id %>
+
+      <%= f.submit "Confirmar", class: "btn btn-primary" %>
+
+    <% end %>
+
+  </div>
+</div>

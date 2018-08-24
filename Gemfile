@@ -3,6 +3,8 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.4.1'
 
+#formularios anidados
+gem "nested_form"
 #Gemas agregadas por el tutorial de Ruby
 gem 'faker',                   '~> 1.7.3'
 gem 'carrierwave',             '1.2.2'

@@ -1,0 +1,22 @@
+<% provide(:title, 'BO-aux') %>
+<h1>Confirmacion Bodeguero de Obra</h1>
+
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <%= form_for(BodegueroObra.new, url: aux_bodobra_path) do |f| %>
+    <%= render 'shared/error_messages' %>
+
+      <%= f.label :bodega_obra_id %>
+      <%= f.select(:bodega_obra_id, @BaO_data) %>
+
+      <%= f.label :bodeguero_central_id %>
+      <%= f.select(:bodeguero_central_id, @BoC_data) %>
+
+      <%= f.hidden_field :user_id, value: current_user.id %>
+
+      <%= f.submit "Confirmar", class: "btn btn-primary" %>
+
+    <% end %>
+
+  </div>
+</div>

@@ -1,0 +1,20 @@
+<p class="fields">
+  <p>
+    <%= f.label :nombre_item %>
+    <%= f.text_field :nombre_item, class: 'form-control' %>
+
+    <%= f.label :sku %>
+    <%= f.text_field :sku, class: 'form-control' %>
+
+    <%= f.label :cantidad %>
+    <%= f.text_field :cantidad, class: 'form-control' %>
+
+    <%= f.label :precio %>
+    <%= f.text_field :precio, class: 'form-control' %>
+
+    <%= f.label :descripcion %>
+    <%= f.text_area :descripcion, :rows => 3 %>
+  </p>
+
+  <%= link_to_remove_fields "remove", f %>
+</p>

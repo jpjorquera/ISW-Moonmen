@@ -14,6 +14,25 @@
 //= require bootstrap
 //= require rails-ujs
 //= require activestorage
+<<<<<<< HEAD
 //= require_tree .
 //= require dataTables/jquery.dataTables
 //= require dataTables/bootstrap/3/jquery.dataTables.bootstrap
+=======
+//= require turbolinks
+//= require jquery_nested_form
+//= require_tree .
+
+
+
+function remove_fields(link) {
+  $(link).prev("input[type=hidden]").val("1");
+  $(link).closest(".fields").hide();
+}
+
+function add_fields(link, association, content) {
+  var new_id = new Date().getTime();
+  var regexp = new RegExp("new_" + association, "g")
+  $(link).parent().before(content.replace(regexp, new_id));
+}
+>>>>>>> c718503d9a5d2b3c78313453092b81c43ae96b92

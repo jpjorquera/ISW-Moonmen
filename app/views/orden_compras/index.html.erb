@@ -12,6 +12,7 @@
   <tbody>
     <% @orden_compras.each do |orden_compra| %>
       <tr>
+        <td><%=  orden_compra.numero_orden %></td>
         <td><%= link_to 'Show', orden_compra %></td>
         <td><%= link_to 'Edit', edit_orden_compra_path(orden_compra) %></td>
         <td><%= link_to 'Destroy', orden_compra, method: :delete, data: { confirm: 'Are you sure?' } %></td>

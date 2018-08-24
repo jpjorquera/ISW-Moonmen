@@ -1,0 +1,22 @@
+<% provide(:title, 'BC-aux') %>
+<h1>Confirmacion Bodeguero Central</h1>
+
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <%= form_for(BodegueroCentral.new, url: aux_bodcentral_path) do |f| %>
+    <%= render 'shared/error_messages' %>
+
+      <%= f.label :bodega_central_id %>
+      <%= f.select(:bodega_central_id, @BaC_data) %>
+
+      <%= f.label :encargado_compra_id %>
+      <%= f.select(:encargado_compra_id, @EC_data) %>
+
+      <%= f.hidden_field :user_id, value: current_user.id %>
+
+      <%= f.submit "Confirmar", class: "btn btn-primary" %>
+
+    <% end %>
+
+  </div>
+</div>

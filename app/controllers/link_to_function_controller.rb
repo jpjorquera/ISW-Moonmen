@@ -1,0 +1,2 @@
+class LinkToFunctionController < ApplicationController
+end
