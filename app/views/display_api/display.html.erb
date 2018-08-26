@@ -1,0 +1,24 @@
+
+<h1>Listando las ordenes del API</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Numero de la Orden</th>
+      <th>Nombre del Proveedor</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @ordenes.each do |ordenes| %>
+      <tr>
+        <td><%= ordenes["id"] %></td>
+        <td><%= ordenes["numero_orden"]%></td>
+        <td><%= ordenes["prov_name"] %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
