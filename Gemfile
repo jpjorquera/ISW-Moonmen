@@ -5,6 +5,8 @@ ruby '2.4.1'
 
 #formularios anidados
 gem "nested_form"
+#Parseo de APIs
+gem 'httparty'
 #Gemas agregadas por el tutorial de Ruby
 gem 'faker',                   '~> 1.7.3'
 gem 'carrierwave',             '1.2.2'
