@@ -2,6 +2,7 @@ class InventarioController < ApplicationController
   def ver
     #current_user. id puesto
     @central = false
+    @personal = false
     n_bodega = 1
     # Bodeguero central
     if current_user.puesto == 2
@@ -17,6 +18,7 @@ class InventarioController < ApplicationController
         n_bodega = bodeguero.bodega_obra_id
       # Personal obra
       else
+        @personal = true
         trabajador = PersonalObra.find_by user_id: current_user.id
         n_bodega = trabajador.bodeguero_obra.bodega_obra_id
       end
