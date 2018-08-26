@@ -87,7 +87,19 @@ class SolicitudsController < ApplicationController
   end
 
   def responder
+    @flag = true
     @solicitud = Solicitud.find(params[:id])
+    @n_sol = 0
+    @n_inv = 0
+    @dif = 0
+  end
+
+  def envio_solicitud
+    @solicitud = params[:id]
+    @flag = params[:estado]
+    @materiales = params[:materiales]
+    puts @materiales
+    puts @flag
   end
 
   def update
