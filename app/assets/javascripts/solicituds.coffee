@@ -13,7 +13,7 @@ $ ->
             success: (response) ->
                 console.log 'success'
             error: (jqHXR, textStatus) ->
-                console.log jqHXR.responseText
+                alert JSON.parse(jqHXR.responseText).error
             
     
 get_materiales = () ->

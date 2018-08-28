@@ -1,6 +1,6 @@
 class SolicitudsController < ApplicationController
 
-  before_action :obtener_informacion_bodeguero, only: [:new, :create, :show, :add, :add_create]
+  before_action :obtener_informacion_bodeguero, only: [:new, :create, :show, :add, :add_create, :envio_solicitud]
 
   def index
     if (current_user.puesto != 1) && (current_user.puesto != 2)
@@ -96,10 +96,33 @@ class SolicitudsController < ApplicationController
 
   def envio_solicitud
     @solicitud = params[:id]
-    @flag = params[:estado]
-    @materiales = params[:materiales]
+    flag = params[:estado]
+    materiales = params[:materiales]
     puts @materiales
     puts @flag
+    #render :json => { "asd" => "asd"}
+    if flag=="false"
+      #flash[:danger] = "No hay suficientes materiales para cumplir la solicitud"
+      payload = {
+        error: "No hay suficientes materiales para cumplir la solicitud",
+        status: 400
+      }
+      render :json =>  payload , :status => :bad_request
+    else
+      render :json => {"not" => "not"}
+    'else
+      flash[:success] = "Materiales enviados correctamente"
+      materiales.each do |mat|
+        stock = InventarioCentral.find_by(bodega_central_id: @bodega_central.id, material_id: mat.id)
+        dif = mat.cantidad.to_i - stock.stock_central
+        stock.update(stock_central: dif)
+        payload = {
+          error: "Materiales enviados correctamente",
+          status: 200
+        }
+        render :json => payload, :status => :ok
+      end'
+    end
   end
 
   def update
