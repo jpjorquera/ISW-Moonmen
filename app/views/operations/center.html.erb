@@ -8,3 +8,8 @@
 <br/><br/>
 <% end %>
 <%= link_to "Correo de prueba <In progress>", testmail_path %>
+
+<% if current_user.puesto == 3%>
+    <%= link_to '<button type="button" class="btn btn-primary btn-lg btn-block">Administracion de Ordenes de Compra</button>'.html_safe, orden_compras_path %>
+<br/><br/>
+<% end %>
