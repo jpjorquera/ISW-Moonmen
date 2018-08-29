@@ -13,6 +13,7 @@ $ ->
             success: (response) ->
                 console.log 'success'
                 alert response.message
+                window.location.assign("/solicituds")
             error: (jqHXR, textStatus) ->
                 alert JSON.parse(jqHXR.responseText).error
             
