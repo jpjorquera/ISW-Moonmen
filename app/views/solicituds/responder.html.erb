@@ -1,0 +1,57 @@
+<h1> Solicitud #<%=@solicitud.id%> - de <%=@solicitud.bodega_obra.localizacion%> </h1>
+
+<div class="container">
+<div class="row">
+    <div class="col-md-3 col-md-offset-2">
+        <h5> Estado:  
+        <% if @solicitud.estado == "pendiente" %>
+        <span class="label label-warning"><%= @solicitud.estado.capitalize %> </span>
+        <% elsif @solicitud.estado == "en_camino" %>
+        <span class="label label-primary"><%= @solicitud.estado.capitalize.sub '_', ' ' %> </span>
+        <% else %>
+        <span class="label label-success"><%= @solicitud.estado.capitalize %> </span>
+        <% end %>
+        </h5>
+    </div>
+</div>
+    <div class="row">
+    <div class="col-md-6 col-md-offset-2">
+        <table class="table table-condensed table-hover" id="materiales">
+                <thead>
+                    <tr>
+                        <th> Material </th>
+                        <th> Cantidad Solicitada </th>
+                        <th> Cantidad en Bodega</th>
+                        <th> Cumplimiento</th>
+                    </tr>
+                </thead>
+            <% @solicitud.materials.each do |mat| %>
+                    <tbody>
+                        <tr>
+                            <td data-idmaterial=<%= mat.id%>><%= mat.nombre %></td>
+                            <td><%= @n_sol = SolicitudMaterial.find_by(solicitud: @solicitud, material: mat).cantidad%></td>
+                            <% if InventarioCentral.find_by(material: mat).nil? %>
+                                <% @n_inv = 0%>
+                                <% @flag = false %>
+                                <td>0</td>
+                                <td><span class="glyphicon glyphicon-remove-circle red"></span></td>
+                            <% else %>
+                                <% if (InventarioCentral.find_by(material: mat).stock_central - SolicitudMaterial.find_by(solicitud: @solicitud, material: mat).cantidad) < 0 %>
+                                    <td><%= @n_inv = InventarioCentral.find_by(material: mat).stock_central %></td>
+                                    <td><span class="glyphicon glyphicon-remove-circle red"></span></td>
+                                    <% @flag = false %>
+                                <% else %>
+                                    <td><%= @n_inv = InventarioCentral.find_by(material: mat).stock_central %></td>
+                                    <td><span class="glyphicon glyphicon-ok-circle green"></span></td>
+                                <%end%>
+                            <% end %>
+                        </tr>
+                    </tbody>
+            <%end%>
+        </table>
+        </div>
+    </div>
+    <div class="col-md-2 col-md-offset-7">
+            <%= button_to "Enviar", {:id => @solicitud.id, :estado => @flag, :action => "envio_solicitud"}, class: "btn btn-info", id: "envio_solicitud_button" %>
+    </div>
+</div>

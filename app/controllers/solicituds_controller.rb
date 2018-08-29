@@ -1,12 +1,16 @@
 class SolicitudsController < ApplicationController
 
-  before_action :obtener_informacion_bodeguero, only: [:new, :create, :show, :add, :add_create]
+  before_action :obtener_informacion_bodeguero, only: [:new, :create, :show, :add, :add_create, :envio_solicitud]
 
   def index
-    if current_user.puesto != 1
+    if (current_user.puesto != 1) && (current_user.puesto != 2)
       redirect_to operations_path
     end
-    @solicitudes = Solicitud.includes(:materials, :bodega_central, :bodega_obra)
+    if current_user.puesto == 1
+      @solicitudes = Solicitud.includes(:materials, :bodega_central, :bodega_obra).where(bodega_obra_id: current_user.bodega_obras[0].id)
+    else
+      @solicitudes = Solicitud.includes(:materials, :bodega_central, :bodega_obra).where(bodega_central_id: current_user.bodega_central[0].id)
+    end
   end
   
   def show
@@ -82,6 +86,46 @@ class SolicitudsController < ApplicationController
     end
   end
 
+  def responder
+    @flag = true
+    @solicitud = Solicitud.find(params[:id])
+    @n_sol = 0
+    @n_inv = 0
+    @dif = 0
+  end
+
+  def envio_solicitud
+    solicitud = params[:id]
+    flag = params[:estado]
+    materiales = params[:materiales]
+    puts @materiales
+    puts @flag
+    #render :json => { "asd" => "asd"}
+    if flag=="false"
+      #flash[:danger] = "No hay suficientes materiales para cumplir la solicitud"
+      payload = {
+        error: "No hay suficientes materiales para cumplir la solicitud",
+        status: 400
+      }
+      render :json =>  payload , :status => :bad_request
+    else
+      #flash.now[:success] = "Materiales enviados correctamente"
+      sol = Solicitud.find(solicitud)
+      sol.update(estado: 1)
+      materiales.each do |mat|
+        id_actual = mat[:id].to_i
+        stock = InventarioCentral.find_by(bodega_central_id: @bodega_central.id, material_id: id_actual)
+        dif =  stock.stock_central - mat[:cantidad].to_i
+        stock.update(stock_central: dif)
+        payload = {
+          message: "Materiales enviados correctamente, actualizados en bodega",
+          status: 200
+        }
+        render :json => payload, :status => :ok
+      end
+    end
+  end
+
   def update
   
   end
@@ -91,10 +135,16 @@ class SolicitudsController < ApplicationController
   end
 
   def obtener_informacion_bodeguero
-    bodeguero = BodegueroObra.find_by user_id: current_user.id
-    n_bodega = bodeguero.bodega_obra_id
-    @bodega_obra = BodegaObra.find(n_bodega)
+    if current_user.puesto == 1
+      bodeguero = BodegueroObra.find_by user_id: current_user.id
+      n_bodega = bodeguero.bodega_obra_id
+      @bodega_obra = BodegaObra.find(n_bodega)
+    else
+      bodeguero = BodegueroCentral.find_by user_id: current_user.id
+      n_bodega = bodeguero.bodega_central_id
+      @bodega_central = BodegaCentral.find(n_bodega)
     @material = Material.all
+    end
   end
 
   def params_nueva_solicitud

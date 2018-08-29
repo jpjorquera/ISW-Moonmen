@@ -2,37 +2,42 @@
 
 <div class="solicitudes">
 <ul>
+<% if current_user.puesto == 1%>
 <div class="row">
     <div class="col-md-2 col-md-offset-2">
         <%= link_to "Crear nueva solicitud", {:action => "new"}, class: "btn btn-primary" %>
     </div>
 </div>
-<br>
+<% end %>
+
+<hr>
 <% @solicitudes.each do |solicitud| %>
     <div class="row">
     <div id="solicitud_<%= solicitud.id %>" class="solicitud col-md-7 col-md-offset-2">
         <li><h4>Solicitud #<%=solicitud.id%> - de <%= solicitud.bodega_obra.localizacion %> a <%= solicitud.bodega_central.localizacion %></h4></li>
         <br>
         <div class="row">
-        <div class="col-md-1">
-        <h5> Estado:  
+            <div class="col-md-3">
+                <h5> Estado:  
+                    <% if solicitud.estado == "pendiente" %>
+                        <span class="label label-warning"><%= solicitud.estado.capitalize %> </span>
+                    <% elsif solicitud.estado == "en_camino" %>
+                        <span class="label label-primary"><%= solicitud.estado.capitalize.sub '_', ' ' %> </span>
+                    <% else %>
+                        <span class="label label-success"><%= solicitud.estado.capitalize %> </span>
+                    <% end %>
+                </h5>
+            </div>
         </div>
-        <% if solicitud.estado == "pendiente" %>
-        <div class=col-md-2>
-        <h5 class="bg-warning"><%= solicitud.estado.capitalize %> </h5>
+        <% if current_user.puesto == 2%>
+        <div class="col-md-3 col-md-offset-7">
+            <%= button_to "Ir a solicitud", {:id => solicitud.id, :action => "responder", }, class: "btn btn-info" %>
         </div>
-        <% elsif solicitud.estado == "en_camino" %>
-        <div class=col-md-2>
-        <h5 class="bg-primary"><%= solicitud.estado.capitalize %> </h5>
-        </div>
-        <% else %>
-        <div class=col-md-2>
-        <h5 class="bg-success"><%= solicitud.estado.capitalize %> </h5>
-        </div>
-        
         <% end %>
         
-        </h5>
+        <br>
+        <br>
+        <br>
         </div>
         <div class="row">
         <div class="col-md-6 col-md-offset-2">
@@ -56,6 +61,7 @@
         </div>
     </div>
     </div>
+    <hr>
 <% end %>
 </ul>
 </div>
