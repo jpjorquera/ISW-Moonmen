@@ -95,7 +95,7 @@ class SolicitudsController < ApplicationController
   end
 
   def envio_solicitud
-    @solicitud = params[:id]
+    solicitud = params[:id]
     flag = params[:estado]
     materiales = params[:materiales]
     puts @materiales
@@ -109,19 +109,20 @@ class SolicitudsController < ApplicationController
       }
       render :json =>  payload , :status => :bad_request
     else
-      render :json => {"not" => "not"}
-    'else
-      flash[:success] = "Materiales enviados correctamente"
+      #flash.now[:success] = "Materiales enviados correctamente"
+      sol = Solicitud.find(solicitud)
+      sol.update(estado: 1)
       materiales.each do |mat|
-        stock = InventarioCentral.find_by(bodega_central_id: @bodega_central.id, material_id: mat.id)
-        dif = mat.cantidad.to_i - stock.stock_central
+        id_actual = mat[:id].to_i
+        stock = InventarioCentral.find_by(bodega_central_id: @bodega_central.id, material_id: id_actual)
+        dif =  stock.stock_central - mat[:cantidad].to_i
         stock.update(stock_central: dif)
         payload = {
-          error: "Materiales enviados correctamente",
+          message: "Materiales enviados correctamente, actualizados en bodega",
           status: 200
         }
         render :json => payload, :status => :ok
-      end'
+      end
     end
   end
 

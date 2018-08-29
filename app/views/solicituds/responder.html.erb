@@ -7,7 +7,7 @@
         <% if @solicitud.estado == "pendiente" %>
         <span class="label label-warning"><%= @solicitud.estado.capitalize %> </span>
         <% elsif @solicitud.estado == "en_camino" %>
-        <span class="label label-primary"><%= @solicitud.estado.capitalize %> </span>
+        <span class="label label-primary"><%= @solicitud.estado.capitalize.sub '_', ' ' %> </span>
         <% else %>
         <span class="label label-success"><%= @solicitud.estado.capitalize %> </span>
         <% end %>

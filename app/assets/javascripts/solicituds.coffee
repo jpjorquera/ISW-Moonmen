@@ -12,6 +12,7 @@ $ ->
             dataType: "json"
             success: (response) ->
                 console.log 'success'
+                alert response.message
             error: (jqHXR, textStatus) ->
                 alert JSON.parse(jqHXR.responseText).error
             
