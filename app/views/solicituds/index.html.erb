@@ -36,6 +36,13 @@
                 </div>
             <% end %>
         <% end %>
+        <% if current_user.puesto == 1%>
+            <% if solicitud.estado == "en_camino" %>
+                <div class="col-md-3 col-md-offset-7">
+                    <%= button_to "Ir a solicitud", {:id => solicitud.id, :action => "confirmar", }, class: "btn btn-info" %>
+                </div>
+            <% end %>
+        <% end %>
         
         <br>
         <br>

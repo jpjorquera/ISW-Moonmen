@@ -1,0 +1,40 @@
+<h1> Solicitud #<%=@solicitud.id%> - de <%=@solicitud.bodega_obra.localizacion%> </h1>
+
+<div class="container">
+<div class="row">
+    <div class="col-md-3 col-md-offset-2">
+        <h5> Estado:  
+        <% if @solicitud.estado == "pendiente" %>
+        <span class="label label-warning"><%= @solicitud.estado.capitalize %> </span>
+        <% elsif @solicitud.estado == "en_camino" %>
+        <span class="label label-primary"><%= @solicitud.estado.capitalize.sub '_', ' ' %> </span>
+        <% else %>
+        <span class="label label-success"><%= @solicitud.estado.capitalize %> </span>
+        <% end %>
+        </h5>
+    </div>
+</div>
+    <div class="row">
+    <div class="col-md-6 col-md-offset-2">
+        <table class="table table-condensed table-hover" id="materiales">
+                <thead>
+                    <tr>
+                        <th> Material </th>
+                        <th> Cantidad Solicitada </th>
+                    </tr>
+                </thead>
+            <% @solicitud.materials.each do |mat| %>
+                    <tbody>
+                        <tr>
+                            <td data-idmaterial=<%= mat.id%>><%= mat.nombre %></td>
+                            <td><%= @n_sol = SolicitudMaterial.find_by(solicitud: @solicitud, material: mat).cantidad%></td>
+                        </tr>
+                    </tbody>
+            <%end%>
+        </table>
+        </div>
+    </div>
+    <div class="col-md-2 col-md-offset-7">
+            <%= button_to "Confirmar recepción", {:id => @solicitud.id, :action => "action_confirmar"}, class: "btn btn-info" %>
+    </div>
+</div>

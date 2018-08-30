@@ -23,6 +23,8 @@ Rails.application.routes.draw do
   post '/solicituds/:id/add_create', to: 'solicituds#add_create'
   post '/solicituds/:id/enviar', to: 'solicituds#enviar'
   post '/solicituds/responder', to: 'solicituds#responder'
+  post '/solicituds/confirmar', to: 'solicituds#confirmar'
+  post '/solicituds/confirmar/action', to: 'solicituds#action_confirmar'
   post '/solicituds/responder/envio', to: 'solicituds#envio_solicitud', defaults: { :format => 'json' }
   resources :materials
   resources :inventario_centrals
