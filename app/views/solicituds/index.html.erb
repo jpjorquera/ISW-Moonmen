@@ -30,9 +30,11 @@
             </div>
         </div>
         <% if current_user.puesto == 2%>
-        <div class="col-md-3 col-md-offset-7">
-            <%= button_to "Ir a solicitud", {:id => solicitud.id, :action => "responder", }, class: "btn btn-info" %>
-        </div>
+            <% if solicitud.estado == "pendiente" %>
+                <div class="col-md-3 col-md-offset-7">
+                    <%= button_to "Ir a solicitud", {:id => solicitud.id, :action => "responder", }, class: "btn btn-info" %>
+                </div>
+            <% end %>
         <% end %>
         
         <br>
