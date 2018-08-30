@@ -112,17 +112,20 @@ class SolicitudsController < ApplicationController
       #flash.now[:success] = "Materiales enviados correctamente"
       sol = Solicitud.find(solicitud)
       sol.update(estado: 1)
+      puts materiales
       materiales.each do |mat|
         id_actual = mat[:id].to_i
         stock = InventarioCentral.find_by(bodega_central_id: @bodega_central.id, material_id: id_actual)
         dif =  stock.stock_central - mat[:cantidad].to_i
         stock.update(stock_central: dif)
-        payload = {
-          message: "Materiales enviados correctamente, actualizados en bodega",
-          status: 200
-        }
-        render :json => payload, :status => :ok
       end
+      receptor = sol.bodega_obra.bodeguero_obra
+      SolicitudEnCaminoMailer.with(solicitud: sol).en_camino.deliver_later
+      payload = {
+        message: "Materiales enviados correctamente, actualizados en bodega",
+        status: 200
+      }
+      render :json => payload, :status => :ok
     end
   end
 

@@ -1,0 +1,12 @@
+<head>
+<meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+</head>
+<body>
+<h1>Estimado <%= @user.name %>:</h1>
+<p>
+    Le escribimos para informarle que se la orden #<%=@solicitud.id%> de <%=@solicitud.bodega_obra.localizacion%> a
+    <%=@solicitud.bodega_central.localizacion%> se encuentra ahora en camino.
+</p>
+<p>Se despiden atentamente, moonmen.</p>
+<p>https://gpi-moonmen.herokuapp.com</p>
+</body>
