@@ -6,8 +6,8 @@
     <%= form_for(PersonalObra.new, url: aux_personal_path) do |f| %>
     <%= render 'shared/error_messages' %>
 
-    <%= f.label :bodeguero_obra_id %>
-    <%= f.select(:bodeguero_obra_id, @BoO_data) %>
+    <%= f.label "Bodega Obra" %>
+      <%= f.select :bodeguero_obra_id, BodegaObra.all.map{ |bo| [bo.localizacion, bo.bodeguero_obra.id] } %>
 
       <%= f.hidden_field :user_id, value: current_user.id %>
 
