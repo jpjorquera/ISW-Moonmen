@@ -25,3 +25,23 @@ Correr `rails db:migrate` para crear la base de datos actualizada.
 Utilizar en terminal `rails s` para iniciar la instancia del sistema.
 
 En URL de algún navegador, ingresar a [localhost:3000](http://localhost:3000) para visualizar el proyecto.
+
+## Prueba de Uso
+
+Se creó una página externa, en [laudus-fake](https://laudusfake.herokuapp.com/) para simular la interacción con el API del ERP Laudus.
+
+Se proveen de varias cuentas para el testeo:
+* Bodegueros Centrales:
+    - bodegueroc1@bodeguero.cl
+    - bodegueroc2@bodeguero.cl
+    - bodegueroc3@bodeguero.cl
+* Bodegueros de Obra:
+    - bodegueroo1@bodeguero.cl
+* Personal de Obra:
+    - personal1@personal.cl
+* Encargado de Compra:
+    - encargado1@encargado.cl
+
+Todos con contraseña: 123456
+
+
