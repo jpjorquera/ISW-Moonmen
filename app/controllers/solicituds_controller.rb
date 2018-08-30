@@ -129,6 +129,27 @@ class SolicitudsController < ApplicationController
     end
   end
 
+  def confirmar
+    @solicitud = Solicitud.find(params[:id])
+  end
+
+  def action_confirmar
+    solicitud = Solicitud.find(params[:id])
+    solicitud.materials.each do |mat|
+      begin  # "try" block
+        actual = mat.InventarioObra.where(bodega_obra_id: n_bodega)
+        pedido = solicitud.solicitud_materials.where(material_id: mat.id)
+        cant = actual.stock_obra.to_i + pedido.cantidad.to_i 
+        actual.update(stock_obra: cant)
+      rescue # optionally: `rescue Exception => ex`
+        pedido = solicitud.solicitud_materials.where(material_id: mat.id)
+        actual = InventarioObra.new(material_id: mat.id, stock_obra: pedido.cantidad, bodega_obra_id: n_bodega)
+      ensure # will always get executed
+        flash[:notice] = "Materiales agregados a la bodega"
+    end 
+    end
+  end
+
   def update
   
   end

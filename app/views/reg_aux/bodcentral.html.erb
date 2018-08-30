@@ -6,11 +6,11 @@
     <%= form_for(BodegueroCentral.new, url: aux_bodcentral_path) do |f| %>
     <%= render 'shared/error_messages' %>
 
-      <%= f.label :bodega_central_id %>
-      <%= f.select(:bodega_central_id, @BaC_data) %>
+      <%= f.label "Bodega Central" %>
+      <%= f.select :bodega_central_id, BodegaCentral.all.map{ |bc| [bc.localizacion, bc.id] } %>
 
-      <%= f.label :encargado_compra_id %>
-      <%= f.select(:encargado_compra_id, @EC_data) %>
+      <%= f.label "Bodeguero Asociado" %>
+      <%= f.select :encargado_compra_id, EncargadoCompra.all.map{ |e| [e.user.name, e.id] } %>
 
       <%= f.hidden_field :user_id, value: current_user.id %>
 
