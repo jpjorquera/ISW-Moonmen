@@ -122,7 +122,7 @@ class SolicitudsController < ApplicationController
       receptor = sol.bodega_obra.bodeguero_obra
       SolicitudEnCaminoMailer.with(solicitud: sol).en_camino.deliver_later
       payload = {
-        message: "Materiales enviados correctamente, actualizados en bodega",
+        message: "Materiales enviados correctamente, informando a la bodega",
         status: 200
       }
       render :json => payload, :status => :ok
