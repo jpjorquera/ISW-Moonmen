@@ -5,6 +5,8 @@ ruby '2.4.1'
 
 #formularios anidados
 gem "nested_form"
+#Parseo de APIs
+gem 'httparty'
 #Gemas agregadas por el tutorial de Ruby
 gem 'faker',                   '~> 1.7.3'
 gem 'carrierwave',             '1.2.2'
@@ -59,6 +61,7 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
+  gem 'rspec-rails', '~> 3.5'
 end
 
 group :test do
@@ -72,6 +75,10 @@ group :test do
   gem 'selenium-webdriver'
   # Easy installation and use of chromedriver to run system tests with Chrome
   gem 'chromedriver-helper'
+  gem 'rspec-rails', '~> 3.5'
+  gem 'factory_bot_rails', '~> 4.0'
+  gem 'shoulda-matchers', '~> 3.1'
+  gem 'database_cleaner'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

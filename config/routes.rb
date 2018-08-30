@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'display_api/display'
   #####Seccion del API
   namespace :api do
     resources :orden_compras
