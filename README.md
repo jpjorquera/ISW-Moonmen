@@ -28,9 +28,9 @@ En URL de algún navegador, ingresar a [localhost:3000](http://localhost:3000) p
 
 ## Prueba de Uso
 
-Se creó una página externa, en [laudus-fake](https://laudusfake.herokuapp.com/) para simular la interacción con el API del ERP Laudus.
+Se creó una página externa, en [laudus-fake](https://laudusfake.herokuapp.com/) con la cual se interactúa para simular el API del ERP Laudus.
 
-Se proveen de varias cuentas para el testeo:
+En el sitio creado en heroku, se provee de varias cuentas para el testeo:
 * Bodegueros Centrales:
     - bodegueroc1@bodeguero.cl
     - bodegueroc2@bodeguero.cl
